@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.3% of total for modules and submodules.">315 statements</a>
+    title=" 4.8% of total for modules and submodules.">358 statements</a>
      </li> 
      
      
@@ -231,6 +231,8 @@
     <div id="subs-0" class="panel-collapse collapse">
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-get_atomic_c6">get_atomic_c6</a>
+      
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-get_polarizibilities">get_polarizibilities</a>
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-new_d4_model">new_d4_model</a>
       
@@ -363,6 +365,8 @@
     <div id="subs-1" class="panel-collapse collapse">
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-get_atomic_c6">get_atomic_c6</a>
+      
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-get_polarizibilities">get_polarizibilities</a>
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-new_d4_model">new_d4_model</a>
       
@@ -689,6 +693,9 @@
       
        <tr><td>procedure, public :: <strong><a href='../type/d4_model.html#boundprocedure-get_atomic_c6'>get_atomic_c6</a></strong>  </td>
        <td><p>Evaluate C6 coefficient</p></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/d4_model.html#boundprocedure-get_polarizibilities'>get_polarizibilities</a></strong>  </td>
+       <td><p>Evaluate atomic polarizibilities</p></td></tr>
       
        <tr><td>procedure, public :: <strong><a href='../type/d4_model.html#boundprocedure-weight_references'>weight_references</a></strong>  </td>
        <td><p>Generate weights for all reference systems</p></td></tr>
@@ -1119,7 +1126,7 @@ private subroutine <a href='../proc/get_atomic_c6.html'>get_atomic_c6</a>(self, 
 
 
 <p>Calculate atomic dispersion coefficients and their derivatives w.r.t.
- the coordination number.</p>
+ the coordination numbers and atomic partial charges.</p>
     
     <h4>Arguments</h4>
     
@@ -1251,6 +1258,171 @@ private subroutine <a href='../proc/get_atomic_c6.html'>get_atomic_c6</a>(self, 
   
   <td></td><td>::</td>
   <td><strong>dc6dq</strong>(:,:)</td><td><p>Derivative of the C6 w.r.t. the partial charge</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_polarizibilities"></span><h3>
+private subroutine <a href='../proc/get_polarizibilities.html'>get_polarizibilities</a>(self, mol, gwvec, gwdcn, gwdq, alpha, dadcn, dadq)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Calculate atomic polarizibilities and their derivatives w.r.t.
+ the coordination numbers and atomic partial charges.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/d4_model.html'>d4_model</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Instance of the dispersion model</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gwvec</strong>(:,:)</td><td><p>Weighting function for the atomic reference systems</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>gwdcn</strong>(:,:)</td><td><p>Derivative of the weighting function w.r.t. the coordination number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>gwdq</strong>(:,:)</td><td><p>Derivative of the weighting function w.r.t. the partial charge</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>alpha</strong>(:)</td><td><p>Static polarizibilities for all atoms.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>dadcn</strong>(:)</td><td><p>Derivative of the polarizibility w.r.t. the coordination number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>dadq</strong>(:)</td><td><p>Derivative of the polarizibility w.r.t. the partial charge</p></td>
   
 </tr>
 
@@ -1554,7 +1726,7 @@ private subroutine <a href='../proc/weight_references.html'>weight_references</a
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-02-26 13:00  
+             on 2021-02-26 21:53  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

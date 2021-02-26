@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.7% of total for modules and submodules.">341 statements</a>
+    title=" 5.5% of total for modules and submodules.">410 statements</a>
      </li> 
      
      
@@ -217,6 +217,8 @@
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-check_error_api">check_error_api</a>
       
+      <a class="list-group-item" href="../module/dftd4_api.html#proc-custom_d4_model_api">custom_d4_model_api</a>
+      
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_version_api">get_version_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-load_rational_damping_api">load_rational_damping_api</a>
@@ -255,6 +257,8 @@
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_dispersion_api">get_dispersion_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_error_api">get_error_api</a>
+      
+      <a class="list-group-item" href="../module/dftd4_api.html#proc-get_properties_api">get_properties_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-update_structure_api">update_structure_api</a>
       
@@ -305,6 +309,7 @@
 <span class="cp">#endif</span>
 <span class="cp">#define DFTD4_API_CALL</span>
 <span class="cp">#define DFTD4_API_SUFFIX__V_3_0</span>
+<span class="cp">#define DFTD4_API_SUFFIX__V_3_1</span>
 
 <span class="c1">/// Error handle class</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd4_error</span><span class="o">*</span> <span class="n">dftd4_error</span><span class="p">;</span>
@@ -382,6 +387,14 @@
 <span class="n">dftd4_new_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
                    <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
 
+<span class="c1">/// Create new D4 dispersion model</span>
+<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_model</span> <span class="n">DFTD4_API_CALL</span>
+<span class="n">dftd4_custom_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                      <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                      <span class="kt">double</span> <span class="cm">/* ga */</span><span class="p">,</span>
+                      <span class="kt">double</span> <span class="cm">/* gc */</span><span class="p">,</span>
+                      <span class="kt">double</span> <span class="cm">/* wf */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span>
+
 <span class="c1">/// Delete dispersion model</span>
 <span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
 <span class="n">dftd4_delete_model</span><span class="p">(</span><span class="n">dftd4_model</span><span class="o">*</span> <span class="cm">/* disp */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
@@ -414,6 +427,17 @@
 <span class="cm"> * Perform dispersion calculations</span>
 <span class="cm">**/</span>
 
+<span class="c1">/// Evaluate properties related to the dispersion model</span>
+<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
+<span class="n">dftd4_get_properties</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                     <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                     <span class="n">dftd4_model</span> <span class="cm">/* disp */</span><span class="p">,</span>
+                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* cn[n] */</span><span class="p">,</span>
+                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* charges[n] */</span><span class="p">,</span>
+                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* c6[n*n] */</span><span class="p">,</span>
+                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* alpha[n] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span>
+
+<span class="c1">/// Evaluate the dispersion energy and its derivatives</span>
 <span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
 <span class="n">dftd4_get_dispersion</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
                      <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
@@ -527,6 +551,8 @@
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-check_error_api">check_error_api</a>
       
+      <a class="list-group-item" href="../module/dftd4_api.html#proc-custom_d4_model_api">custom_d4_model_api</a>
+      
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_version_api">get_version_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-load_rational_damping_api">load_rational_damping_api</a>
@@ -565,6 +591,8 @@
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_dispersion_api">get_dispersion_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-get_error_api">get_error_api</a>
+      
+      <a class="list-group-item" href="../module/dftd4_api.html#proc-get_properties_api">get_properties_api</a>
       
       <a class="list-group-item" href="../module/dftd4_api.html#proc-update_structure_api">update_structure_api</a>
       
@@ -912,6 +940,134 @@ public function <a href='../proc/check_error_api.html'>check_error_api</a>(verro
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-custom_d4_model_api"></span><h3>
+public function <a href='../proc/custom_d4_model_api.html'>custom_d4_model_api</a>(verror, vmol, ga, gc, wf) result(vdisp) bind(C, name=namespace//"custom_d4_model")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create new D4 dispersion model</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>ga</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>gc</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>wf</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(c_ptr)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-get_version_api"></span><h3>
 public function <a href='../proc/get_version_api.html'>get_version_api</a>() result(version) bind(C, name=namespace//"get_version")
     
@@ -952,7 +1108,7 @@ public function <a href='../proc/get_version_api.html'>get_version_api</a>() res
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-load_rational_damping_api"></span><h3>
-private function <a href='../proc/load_rational_damping_api.html'>load_rational_damping_api</a>(verror, charptr, atm) result(vparam) bind(C, name=namespace//"load_rational_damping")
+public function <a href='../proc/load_rational_damping_api.html'>load_rational_damping_api</a>(verror, charptr, atm) result(vparam) bind(C, name=namespace//"load_rational_damping")
     
     
    
@@ -1879,7 +2035,7 @@ private subroutine <a href='../proc/f_c_character.html'>f_c_character</a>(rhs, l
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-get_dispersion_api"></span><h3>
-private subroutine <a href='../proc/get_dispersion_api.html'>get_dispersion_api</a>(verror, vmol, vdisp, vparam, energy, c_gradient, c_sigma) bind(C, name=namespace//"0")
+public subroutine <a href='../proc/get_dispersion_api.html'>get_dispersion_api</a>(verror, vmol, vdisp, vparam, energy, c_gradient, c_sigma) bind(C, name=namespace//"0")
     
     
    
@@ -2116,6 +2272,155 @@ public subroutine <a href='../proc/get_error_api.html'>get_error_api</a>(verror,
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_properties_api"></span><h3>
+public subroutine <a href='../proc/get_properties_api.html'>get_properties_api</a>(verror, vmol, vdisp, c_cn, c_charges, c_c6, c_alpha) bind(C, name=namespace//"0")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Calculate dispersion</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vdisp</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_cn</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_charges</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_c6</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_alpha</strong>(*)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-update_structure_api"></span><h3>
 public subroutine <a href='../proc/update_structure_api.html'>update_structure_api</a>(verror, vmol, positions, lattice) bind(C, name=namespace//"0")
     
@@ -2312,7 +2617,7 @@ private subroutine <a href='../proc/verify_structure.html'>verify_structure</a>(
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-02-26 13:00  
+             on 2021-02-26 21:53  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

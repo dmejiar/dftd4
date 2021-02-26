@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>get_dispersion_api &ndash; DFT-D4</title>
+    <title>get_properties_api &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,7 +112,7 @@
     
   
   <div class="row">
-    <h1>get_dispersion_api
+    <h1>get_properties_api
       <small>Subroutine</small>
     
     </h1>
@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.9% of total for procedures.">50 statements</a>
+    title=" 1.7% of total for procedures.">45 statements</a>
      </li> 
      
      
@@ -147,7 +147,7 @@
      <li><a href='../module/dftd4_api.html'>dftd4_api</a></li>
     
   
-     <li class="active">get_dispersion_api</li>
+     <li class="active">get_properties_api</li>
   </ol>
 </div>
 </div>
@@ -191,7 +191,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_dispersion_api.html#src">get_dispersion_api</a>
+    <a class="list-group-item" href="../proc/get_properties_api.html#src">get_properties_api</a>
   </div>
 </div>
 
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_gradient, c_sigma) bind(C, name=namespace//"0")
+public subroutine get_properties_api(verror, vmol, vdisp, c_cn, c_charges, c_c6, c_alpha) bind(C, name=namespace//"0")
     
     
    
@@ -234,7 +234,7 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
   
 <tr>
   
-  <td><span class="anchor" id="variable-verror~9"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-verror~11"></span>type(c_ptr),</td>
   <td></td>
   <td></td>
   
@@ -249,7 +249,7 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
   
 <tr>
   
-  <td><span class="anchor" id="variable-vmol~5"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-vmol~6"></span>type(c_ptr),</td>
   <td></td>
   <td></td>
   
@@ -264,7 +264,7 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
   
 <tr>
   
-  <td><span class="anchor" id="variable-vdisp~4"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-vdisp~5"></span>type(c_ptr),</td>
   <td></td>
   <td></td>
   
@@ -279,42 +279,12 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
   
 <tr>
   
-  <td><span class="anchor" id="variable-vparam~4"></span>type(c_ptr),</td>
-  <td></td>
-  <td></td>
-  
-  <td>value</td><td>::</td>
-  <td><strong>vparam</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-energy~3"></span>real(kind=c_double),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>energy</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-c_gradient"></span>real(kind=c_double),</td>
+  <td><span class="anchor" id="variable-c_cn"></span>real(kind=c_double),</td>
   <td>intent(out),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>c_gradient</strong>(3,*)</td><td></td>
+  <td><strong>c_cn</strong>(*)</td><td></td>
   
 </tr>
 
@@ -324,12 +294,42 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
   
 <tr>
   
-  <td><span class="anchor" id="variable-c_sigma"></span>real(kind=c_double),</td>
+  <td><span class="anchor" id="variable-c_charges"></span>real(kind=c_double),</td>
   <td>intent(out),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>c_sigma</strong>(3,3)</td><td></td>
+  <td><strong>c_charges</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-c_c6"></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_c6</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-c_alpha"></span>real(kind=c_double),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>c_alpha</strong>(*)</td><td></td>
   
 </tr>
 
@@ -371,7 +371,7 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_dispersion_api.html#src">get_dispersion_api</a>
+    <a class="list-group-item" href="../proc/get_properties_api.html#src">get_properties_api</a>
   </div>
 </div>
 
@@ -400,24 +400,28 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_dispersion_api</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">vmol</span><span class="p">,</span> <span class="n">vdisp</span><span class="p">,</span> <span class="n">vparam</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">c_gradient</span><span class="p">,</span> <span class="n">c_sigma</span><span class="p">)</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">namespace</span><span class="o">//</span><span class="s2">&quot;get_dispersion&quot;</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_properties_api</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">vmol</span><span class="p">,</span> <span class="n">vdisp</span><span class="p">,</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span> <span class="n">c_cn</span><span class="p">,</span> <span class="n">c_charges</span><span class="p">,</span> <span class="n">c_c6</span><span class="p">,</span> <span class="n">c_alpha</span><span class="p">)</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">namespace</span><span class="o">//</span><span class="s2">&quot;get_properties&quot;</span><span class="p">)</span>
    <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">verror</span>
    <span class="k">type</span><span class="p">(</span><span class="n">vp_error</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">error</span>
    <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vmol</span>
    <span class="k">type</span><span class="p">(</span><span class="n">vp_structure</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">mol</span>
    <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vdisp</span>
    <span class="k">type</span><span class="p">(</span><span class="n">vp_model</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">disp</span>
-   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vparam</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">vp_param</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">param</span>
-   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>
-   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
-   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_cn</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_charges</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">charges</span><span class="p">(:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_c6</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_alpha</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(:)</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="k">print</span><span class="s1">&#39;(&quot;[Info]&quot;,1x, a)&#39;</span><span class="p">,</span> <span class="s2">&quot;get_dispersion&quot;</span>
+   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="k">print</span><span class="s1">&#39;(&quot;[Info]&quot;,1x, a)&#39;</span><span class="p">,</span> <span class="s2">&quot;get_properties&quot;</span>
 
    <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">verror</span><span class="p">))</span> <span class="k">return</span>
 <span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
@@ -434,37 +438,27 @@ public subroutine get_dispersion_api(verror, vmol, vdisp, vparam, energy, c_grad
 <span class="k">   end if</span>
 <span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vdisp</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
 
-   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vparam</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Damping parameters are missing&quot;</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   end if</span>
-<span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">charges</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">alpha</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+   <span class="k">call </span><span class="n">get_properties</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="n">cn</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
 
-   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">%</span><span class="n">ptr</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Damping parameters are not initialized&quot;</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   end if</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_cn</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">c_cn</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">cn</span><span class="p">))</span> <span class="o">=</span> <span class="n">cn</span>
+   <span class="k">end if</span>
 
-<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_gradient</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">gradient</span> <span class="o">=</span> <span class="n">c_gradient</span><span class="p">(:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">)</span>
-   <span class="k">endif</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_charges</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">c_charges</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">charges</span><span class="p">))</span> <span class="o">=</span> <span class="n">charges</span>
+   <span class="k">end if</span>
 
-<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_gradient</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">sigma</span> <span class="o">=</span> <span class="n">c_sigma</span><span class="p">(:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">)</span>
-   <span class="k">endif</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_c6</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">c_c6</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">))</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">c6</span><span class="p">,</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">)])</span>
+   <span class="k">end if</span>
 
-<span class="k">   call </span><span class="n">get_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_alpha</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">c_alpha</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="o">=</span> <span class="n">alpha</span>
+   <span class="k">end if</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_gradient</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">c_gradient</span><span class="p">(:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span>
-   <span class="k">endif</span>
-
-<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_gradient</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">c_sigma</span><span class="p">(:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">sigma</span>
-   <span class="k">endif</span>
-
-<span class="k">end subroutine </span><span class="n">get_dispersion_api</span>
+<span class="k">end subroutine </span><span class="n">get_properties_api</span>
 </pre></div>
 
     </section>

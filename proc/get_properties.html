@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>get_coordination_number &ndash; DFT-D4</title>
+    <title>get_properties &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,7 +112,7 @@
     
   
   <div class="row">
-    <h1>get_coordination_number
+    <h1>get_properties
       <small>Subroutine</small>
     
     </h1>
@@ -130,24 +130,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.6% of total for procedures.">15 statements</a>
+    title=" 0.7% of total for procedures.">19 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/ncoord.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/disp.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/ncoord.f90.html'>ncoord.f90</a></li>
+     <li><a href='../sourcefile/disp.f90.html'>disp.f90</a></li>
     
-     <li><a href='../module/dftd4_ncoord.html'>dftd4_ncoord</a></li>
+     <li><a href='../module/dftd4_disp.html'>dftd4_disp</a></li>
     
   
-     <li class="active">get_coordination_number</li>
+     <li class="active">get_properties</li>
   </ol>
 </div>
 </div>
@@ -191,7 +191,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_coordination_number.html#src">get_coordination_number</a>
+    <a class="list-group-item" href="../proc/get_properties.html#src">get_properties</a>
   </div>
 </div>
 
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
+public subroutine get_properties(mol, disp, cutoff, cn, q, c6, alpha)
     
     
    
@@ -213,7 +213,7 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
 
 
     
-    <p>Geometric fractional coordination number, supports error function counting.</p>
+    <p>Wrapper to handle the evaluation of properties related to this dispersion model</p>
     
 
     <h3>Arguments</h3>
@@ -234,7 +234,7 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~16"></span>type(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~3"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -249,12 +249,12 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-disp~2"></span>class(<a href='../type/d4_model.html'>d4_model</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  <td><strong>disp</strong></td><td><p>Dispersion model</p></td>
   
 </tr>
 
@@ -264,12 +264,12 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~3"></span>type(<a href='../type/realspace_cutoff.html'>realspace_cutoff</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  <td><strong>cutoff</strong></td><td><p>Realspace cutoffs</p></td>
   
 </tr>
 
@@ -279,42 +279,12 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-rcov~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>rcov</strong>(:)</td><td><p>Covalent radius</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-en~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>en</strong>(:)</td><td><p>Electronegativity</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-cn~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cn~3"></span>real(kind=wp),</td>
   <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>cn</strong>(:)</td><td><p>Error function coordination number.</p></td>
+  <td><strong>cn</strong>(:)</td><td><p>Coordination number</p></td>
   
 </tr>
 
@@ -324,12 +294,12 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-dcndr"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
+  <td><span class="anchor" id="variable-q~2"></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>dcndr</strong>(:,:,:)</td><td><p>Derivative of the CN with respect to the Cartesian coordinates.</p></td>
+  <td><strong>q</strong>(:)</td><td><p>Atomic partial charges</p></td>
   
 </tr>
 
@@ -339,12 +309,27 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
   
 <tr>
   
-  <td><span class="anchor" id="variable-dcndl"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
+  <td><span class="anchor" id="variable-c6~3"></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>dcndL</strong>(:,:,:)</td><td><p>Derivative of the CN with respect to strain deformations.</p></td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-alpha"></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>alpha</strong>(:)</td><td><p>Static polarizibilities</p></td>
   
 </tr>
 
@@ -386,7 +371,7 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_coordination_number.html#src">get_coordination_number</a>
+    <a class="list-group-item" href="../proc/get_properties.html#src">get_properties</a>
   </div>
 </div>
 
@@ -415,39 +400,46 @@ public subroutine get_coordination_number(mol, trans, cutoff, rcov, en, cn, dcnd
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_coordination_number</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rcov</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">dcndr</span><span class="p">,</span> <span class="n">dcndL</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_properties</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
 
    <span class="c">!&gt; Molecular structure data</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
 
-   <span class="c">!&gt; Lattice points</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="c">!&gt; Dispersion model</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">d4_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">disp</span>
 
-   <span class="c">!&gt; Real space cutoff</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+   <span class="c">!&gt; Realspace cutoffs</span>
+   <span class="k">type</span><span class="p">(</span><span class="n">realspace_cutoff</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
 
-   <span class="c">!&gt; Covalent radius</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rcov</span><span class="p">(:)</span>
-
-   <span class="c">!&gt; Electronegativity</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">en</span><span class="p">(:)</span>
-
-   <span class="c">!&gt; Error function coordination number.</span>
+   <span class="c">!&gt; Coordination number</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
 
-   <span class="c">!&gt; Derivative of the CN with respect to the Cartesian coordinates.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
+   <span class="c">!&gt; Atomic partial charges</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">q</span><span class="p">(:)</span>
 
-   <span class="c">!&gt; Derivative of the CN with respect to strain deformations.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
+   <span class="c">!&gt; C6 coefficients</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">dcndr</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">dcndL</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">ncoord_derf</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rcov</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">dcndr</span><span class="p">,</span> <span class="n">dcndL</span><span class="p">)</span>
-   <span class="k">else</span>
-<span class="k">      call </span><span class="n">ncoord_erf</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rcov</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">cn</span><span class="p">)</span>
-   <span class="k">end if</span>
+   <span class="c">!&gt; Static polarizibilities</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(:)</span>
 
-<span class="k">end subroutine </span><span class="n">get_coordination_number</span>
+   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
+
+   <span class="n">mref</span> <span class="o">=</span> <span class="nb">maxval</span><span class="p">(</span><span class="n">disp</span><span class="p">%</span><span class="n">ref</span><span class="p">)</span>
+
+   <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">cn</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">get_coordination_number</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">cn</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rcov</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">en</span><span class="p">,</span> <span class="n">cn</span><span class="p">)</span>
+
+   <span class="k">call </span><span class="n">get_charges</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+   <span class="k">allocate</span><span class="p">(</span><span class="n">gwvec</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">weight_references</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">)</span>
+
+   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">c6</span><span class="o">=</span><span class="n">c6</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_polarizibilities</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">end subroutine </span><span class="n">get_properties</span>
 </pre></div>
 
     </section>
