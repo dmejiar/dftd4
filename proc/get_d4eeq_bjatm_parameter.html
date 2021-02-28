@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 7.3% of total for procedures.">192 statements</a>
+    title=" 7.4% of total for procedures.">194 statements</a>
      </li> 
      
      
@@ -483,6 +483,9 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.28130770_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.38822021_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.92501211_wp</span> <span class="p">)</span>
       <span class="c">!  Fitset: MD= -0.02105 MAD= 0.22968 RMSD= 0.36045</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_lh20t</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (10.1021/acs.jctc.0c00498)</span>
+         <span class="p">&amp;</span> <span class="n">s6</span><span class="o">=</span><span class="mf">1.000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.113_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.479_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.635_wp</span> <span class="p">)</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_m06</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.16366729_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.53456413_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">6.06192174_wp</span> <span class="p">)</span>
@@ -616,10 +619,10 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.46126056_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.62930855_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">6.31284039_wp</span> <span class="p">)</span>
       <span class="c">!  Fitset: MD= -0.13170 MAD= 0.28640 RMSD= 0.51183</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_rscan</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (10.1063/5.0041008)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.87728975_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.49116966_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.75859346_wp</span> <span class="p">)</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_r2scan</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (10.1063/5.0041008)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.60187490_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.51559235_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.77342911_wp</span> <span class="p">)</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_tpss0</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
@@ -729,7 +732,7 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-02-28 09:55  
+             on 2021-02-28 12:42  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>
