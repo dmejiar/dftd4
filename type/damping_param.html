@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p> 9.3% of total for derived types.</p>Including implementation: 5 statements,  1.5% of total for derived types.">5 statements</a>
+    title="<p>12.1% of total for derived types.</p>Including implementation: 7 statements,  1.6% of total for derived types.">7 statements</a>
      </li> 
      
      
@@ -195,6 +195,10 @@
       
       <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_dispersion3">get_dispersion3</a>
       
+      <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_pairwise_dispersion2">get_pairwise_dispersion2</a>
+      
+      <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_pairwise_dispersion3">get_pairwise_dispersion3</a>
+      
     </div>
   </div>
 </div>
@@ -254,6 +258,10 @@
       <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_dispersion2">get_dispersion2</a>
       
       <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_dispersion3">get_dispersion3</a>
+      
+      <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_pairwise_dispersion2">get_pairwise_dispersion2</a>
+      
+      <a class="list-group-item" href="../type/damping_param.html#boundprocedure-get_pairwise_dispersion3">get_pairwise_dispersion3</a>
       
     </div>
   </div>
@@ -780,6 +788,322 @@ subroutine dispersion_interface(self, mol, trans, cutoff, r4r2, c6, dc6dcn, dc6d
 </div>
 
     
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_pairwise_dispersion2"></span><h3>procedure(<a href='../interface/pairwise_dispersion_interface.html'>pairwise_dispersion_interface</a>), public, deferred :: <strong>get_pairwise_dispersion2</strong>  
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+            
+    
+    <h3>
+subroutine pairwise_dispersion_interface(self, mol, trans, cutoff, r4r2, c6, energy)
+    
+    
+   
+<small>Prototype</small></h3>
+    
+
+
+
+<p>Evaluation of the pairwise representation of the dispersion energy</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:,:)</td><td><p>Pairwise representation of the dispersion energy</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+         
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_pairwise_dispersion3"></span><h3>procedure(<a href='../interface/pairwise_dispersion_interface.html'>pairwise_dispersion_interface</a>), public, deferred :: <strong>get_pairwise_dispersion3</strong>  
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+            
+    
+    <h3>
+subroutine pairwise_dispersion_interface(self, mol, trans, cutoff, r4r2, c6, energy)
+    
+    
+   
+<small>Prototype</small></h3>
+    
+
+
+
+<p>Evaluation of the pairwise representation of the dispersion energy</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:,:)</td><td><p>Pairwise representation of the dispersion energy</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+         
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
     </section>
     
     
@@ -790,6 +1114,8 @@ subroutine dispersion_interface(self, mol, trans, cutoff, r4r2, c6, dc6dcn, dc6d
    <span class="k">contains</span>
 <span class="k">      procedure</span><span class="p">(</span><span class="n">dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_dispersion2</span>
       <span class="k">procedure</span><span class="p">(</span><span class="n">dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_dispersion3</span>
+      <span class="k">procedure</span><span class="p">(</span><span class="n">pairwise_dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_pairwise_dispersion2</span>
+      <span class="k">procedure</span><span class="p">(</span><span class="n">pairwise_dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_pairwise_dispersion3</span>
    <span class="k">end type </span><span class="n">damping_param</span>
 </pre></div>
 
@@ -811,7 +1137,7 @@ subroutine dispersion_interface(self, mol, trans, cutoff, r4r2, c6, dc6dcn, dc6d
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-03-09 18:53  
+             on 2021-03-10 13:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

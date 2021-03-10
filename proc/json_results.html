@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 2.4% of total for procedures.">62 statements</a>
+    title=" 2.7% of total for procedures.">78 statements</a>
      </li> 
      
      
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q, c6)
+public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q, c6, pairwise_energy2, pairwise_energy3)
     
     
    
@@ -232,7 +232,7 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
   
 <tr>
   
-  <td><span class="anchor" id="variable-unit~7"></span>integer,</td>
+  <td><span class="anchor" id="variable-unit~8"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -262,7 +262,7 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -337,12 +337,42 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~5"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
   <td></td><td>::</td>
   <td><strong>c6</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pairwise_energy2"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pairwise_energy2</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-pairwise_energy3"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pairwise_energy3</strong>(:,:)</td><td></td>
   
 </tr>
 
@@ -413,7 +443,8 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">indentation</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">c6</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">indentation</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span> <span class="n">pairwise_energy2</span><span class="p">,</span> <span class="n">pairwise_energy3</span><span class="p">)</span>
    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">indentation</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">energy</span>
@@ -422,6 +453,8 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">q</span><span class="p">(:)</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">pairwise_energy2</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">pairwise_energy3</span><span class="p">(:,</span> <span class="p">:)</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">indent</span><span class="p">,</span> <span class="n">version_string</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">jsonkey</span> <span class="o">=</span> <span class="s2">&quot;(&#39;&quot;&quot;&#39;,a,&#39;&quot;&quot;:&#39;,1x)&quot;</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="k">array</span><span class="p">(:)</span>
@@ -475,6 +508,20 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
       <span class="k">array</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">c6</span><span class="p">,</span> <span class="p">[</span><span class="nb">product</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">c6</span><span class="p">))])</span>
       <span class="k">call </span><span class="n">write_json_array</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="k">array</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
    <span class="k">end if</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">pairwise_energy2</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;,&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">indent</span><span class="p">))</span> <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(/,a)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span> <span class="nb">repeat</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">jsonkey</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span> <span class="s1">&#39;additive pairwise energy&#39;</span>
+      <span class="k">array</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">pairwise_energy2</span><span class="p">,</span> <span class="p">[</span><span class="nb">product</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">pairwise_energy2</span><span class="p">))])</span>
+      <span class="k">call </span><span class="n">write_json_array</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="k">array</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
+   <span class="k">end if</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">pairwise_energy3</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;,&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">indent</span><span class="p">))</span> <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(/,a)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span> <span class="nb">repeat</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">jsonkey</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span> <span class="s1">&#39;non-additive pairwise energy&#39;</span>
+      <span class="k">array</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">pairwise_energy3</span><span class="p">,</span> <span class="p">[</span><span class="nb">product</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">pairwise_energy3</span><span class="p">))])</span>
+      <span class="k">call </span><span class="n">write_json_array</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="k">array</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
+   <span class="k">end if</span>
 <span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">indent</span><span class="p">))</span> <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(/)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span>
    <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;}&quot;)&#39;</span><span class="p">)</span>
 
@@ -500,7 +547,7 @@ public subroutine json_results(unit, indentation, energy, gradient, sigma, cn, q
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-03-09 18:53  
+             on 2021-03-10 13:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 5.5% of total for source files.">410 statements</a>
+    title=" 5.9% of total for source files.">447 statements</a>
      </li> 
      
      
@@ -293,7 +293,7 @@
 <a name="ln-26"></a>   <span class="k">use </span><span class="n">dftd4_cutoff</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">realspace_cutoff</span>
 <a name="ln-27"></a>   <span class="k">use </span><span class="n">dftd4_damping</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">damping_param</span>
 <a name="ln-28"></a>   <span class="k">use </span><span class="n">dftd4_damping_rational</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">rational_damping_param</span>
-<a name="ln-29"></a>   <span class="k">use </span><span class="n">dftd4_disp</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_properties</span>
+<a name="ln-29"></a>   <span class="k">use </span><span class="n">dftd4_disp</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_pairwise_dispersion</span><span class="p">,</span> <span class="n">get_properties</span>
 <a name="ln-30"></a>   <span class="k">use </span><span class="n">dftd4_model</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">d4_model</span><span class="p">,</span> <span class="n">new_d4_model</span>
 <a name="ln-31"></a>   <span class="k">use </span><span class="n">dftd4_param</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_rational_damping</span>
 <a name="ln-32"></a>   <span class="k">use </span><span class="n">dftd4_utils</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wrap_to_central_cell</span>
@@ -316,7 +316,7 @@
 <a name="ln-49"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">new_rational_damping_api</span> <span class="p">,</span> <span class="n">load_rational_damping_api</span>
 <a name="ln-50"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">delete_param_api</span>
 <a name="ln-51"></a>
-<a name="ln-52"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_dispersion_api</span><span class="p">,</span> <span class="n">get_properties_api</span>
+<a name="ln-52"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_dispersion_api</span><span class="p">,</span> <span class="n">get_pairwise_dispersion_api</span><span class="p">,</span> <span class="n">get_properties_api</span>
 <a name="ln-53"></a>
 <a name="ln-54"></a>   <span class="c">!&gt; Namespace for C routines</span>
 <a name="ln-55"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">namespace</span> <span class="o">=</span> <span class="s2">&quot;dftd4_&quot;</span>
@@ -794,116 +794,167 @@
 <a name="ln-527"></a><span class="k">end subroutine </span><span class="n">get_dispersion_api</span>
 <a name="ln-528"></a>
 <a name="ln-529"></a>
-<a name="ln-530"></a><span class="c">!&gt; Calculate dispersion</span>
-<a name="ln-531"></a><span class="k">subroutine </span><span class="n">get_properties_api</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">vmol</span><span class="p">,</span> <span class="n">vdisp</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-532"></a>      <span class="p">&amp;</span> <span class="n">c_cn</span><span class="p">,</span> <span class="n">c_charges</span><span class="p">,</span> <span class="n">c_c6</span><span class="p">,</span> <span class="n">c_alpha</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-533"></a>      <span class="p">&amp;</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">namespace</span><span class="o">//</span><span class="s2">&quot;get_properties&quot;</span><span class="p">)</span>
+<a name="ln-530"></a><span class="c">!&gt; Calculate pairwise representation of dispersion energy</span>
+<a name="ln-531"></a><span class="k">subroutine </span><span class="n">get_pairwise_dispersion_api</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">vmol</span><span class="p">,</span> <span class="n">vdisp</span><span class="p">,</span> <span class="n">vparam</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-532"></a>      <span class="p">&amp;</span> <span class="n">c_pair_energy2</span><span class="p">,</span> <span class="n">c_pair_energy3</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-533"></a>      <span class="p">&amp;</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">namespace</span><span class="o">//</span><span class="s2">&quot;get_pairwise_dispersion&quot;</span><span class="p">)</span>
 <a name="ln-534"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">verror</span>
 <a name="ln-535"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_error</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">error</span>
 <a name="ln-536"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vmol</span>
 <a name="ln-537"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_structure</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">mol</span>
 <a name="ln-538"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vdisp</span>
 <a name="ln-539"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_model</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">disp</span>
-<a name="ln-540"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_cn</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-541"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
-<a name="ln-542"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_charges</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-543"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">charges</span><span class="p">(:)</span>
-<a name="ln-544"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_c6</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-545"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
-<a name="ln-546"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_alpha</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-547"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(:)</span>
+<a name="ln-540"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vparam</span>
+<a name="ln-541"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_param</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">param</span>
+<a name="ln-542"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c_pair_energy2</span>
+<a name="ln-543"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">pair_energy2</span><span class="p">(:,</span> <span class="p">:)</span>
+<a name="ln-544"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c_pair_energy3</span>
+<a name="ln-545"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">pair_energy3</span><span class="p">(:,</span> <span class="p">:)</span>
+<a name="ln-546"></a>
+<a name="ln-547"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="k">print</span><span class="s1">&#39;(&quot;[Info]&quot;,1x, a)&#39;</span><span class="p">,</span> <span class="s2">&quot;get_pairwise_dispersion&quot;</span>
 <a name="ln-548"></a>
-<a name="ln-549"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
-<a name="ln-550"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
+<a name="ln-549"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">verror</span><span class="p">))</span> <span class="k">return</span>
+<a name="ln-550"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 <a name="ln-551"></a>
-<a name="ln-552"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="k">print</span><span class="s1">&#39;(&quot;[Info]&quot;,1x, a)&#39;</span><span class="p">,</span> <span class="s2">&quot;get_properties&quot;</span>
-<a name="ln-553"></a>
-<a name="ln-554"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">verror</span><span class="p">))</span> <span class="k">return</span>
-<a name="ln-555"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-556"></a>
-<a name="ln-557"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vmol</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-558"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Molecular structure data is missing&quot;</span><span class="p">)</span>
-<a name="ln-559"></a>      <span class="k">return</span>
-<a name="ln-560"></a><span class="k">   end if</span>
-<a name="ln-561"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vmol</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
-<a name="ln-562"></a>
-<a name="ln-563"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vdisp</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-564"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Dispersion model is missing&quot;</span><span class="p">)</span>
-<a name="ln-565"></a>      <span class="k">return</span>
-<a name="ln-566"></a><span class="k">   end if</span>
-<a name="ln-567"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vdisp</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
-<a name="ln-568"></a>
-<a name="ln-569"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">charges</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">alpha</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="p">&amp;</span>
-<a name="ln-570"></a>      <span class="p">&amp;</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
-<a name="ln-571"></a>   <span class="k">call </span><span class="n">get_properties</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="n">cn</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
-<a name="ln-572"></a>
-<a name="ln-573"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_cn</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-574"></a><span class="k">      </span><span class="n">c_cn</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">cn</span><span class="p">))</span> <span class="o">=</span> <span class="n">cn</span>
-<a name="ln-575"></a>   <span class="k">end if</span>
-<a name="ln-576"></a>
-<a name="ln-577"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_charges</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-578"></a><span class="k">      </span><span class="n">c_charges</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">charges</span><span class="p">))</span> <span class="o">=</span> <span class="n">charges</span>
-<a name="ln-579"></a>   <span class="k">end if</span>
+<a name="ln-552"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vmol</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-553"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Molecular structure data is missing&quot;</span><span class="p">)</span>
+<a name="ln-554"></a>      <span class="k">return</span>
+<a name="ln-555"></a><span class="k">   end if</span>
+<a name="ln-556"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vmol</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
+<a name="ln-557"></a>
+<a name="ln-558"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vdisp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-559"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Dispersion model is missing&quot;</span><span class="p">)</span>
+<a name="ln-560"></a>      <span class="k">return</span>
+<a name="ln-561"></a><span class="k">   end if</span>
+<a name="ln-562"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vdisp</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+<a name="ln-563"></a>
+<a name="ln-564"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vparam</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-565"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Damping parameters are missing&quot;</span><span class="p">)</span>
+<a name="ln-566"></a>      <span class="k">return</span>
+<a name="ln-567"></a><span class="k">   end if</span>
+<a name="ln-568"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+<a name="ln-569"></a>
+<a name="ln-570"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">%</span><span class="n">ptr</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-571"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Damping parameters are not initialized&quot;</span><span class="p">)</span>
+<a name="ln-572"></a>      <span class="k">return</span>
+<a name="ln-573"></a><span class="k">   end if</span>
+<a name="ln-574"></a>
+<a name="ln-575"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">c_pair_energy2</span><span class="p">,</span> <span class="n">pair_energy2</span><span class="p">,</span> <span class="p">[</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">])</span>
+<a name="ln-576"></a>   <span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">c_pair_energy3</span><span class="p">,</span> <span class="n">pair_energy3</span><span class="p">,</span> <span class="p">[</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">])</span>
+<a name="ln-577"></a>
+<a name="ln-578"></a>   <span class="k">call </span><span class="n">get_pairwise_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="p">&amp;</span>
+<a name="ln-579"></a>      <span class="p">&amp;</span> <span class="n">pair_energy2</span><span class="p">,</span> <span class="n">pair_energy3</span><span class="p">)</span>
 <a name="ln-580"></a>
-<a name="ln-581"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_c6</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-582"></a><span class="k">      </span><span class="n">c_c6</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">))</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">c6</span><span class="p">,</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">)])</span>
-<a name="ln-583"></a>   <span class="k">end if</span>
-<a name="ln-584"></a>
-<a name="ln-585"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_alpha</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-586"></a><span class="k">      </span><span class="n">c_alpha</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="o">=</span> <span class="n">alpha</span>
-<a name="ln-587"></a>   <span class="k">end if</span>
-<a name="ln-588"></a>
-<a name="ln-589"></a><span class="k">end subroutine </span><span class="n">get_properties_api</span>
-<a name="ln-590"></a>
-<a name="ln-591"></a>
-<a name="ln-592"></a><span class="k">subroutine </span><span class="n">f_c_character</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">lhs</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
-<a name="ln-593"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-594"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span>
-<a name="ln-595"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="nb">len</span>
-<a name="ln-596"></a><span class="nb">   </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">length</span>
-<a name="ln-597"></a>   <span class="n">length</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len_trim</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
-<a name="ln-598"></a>
-<a name="ln-599"></a>   <span class="n">lhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">)</span> <span class="o">=</span> <span class="nb">transfer</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">),</span> <span class="n">lhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">))</span>
-<a name="ln-600"></a>   <span class="n">lhs</span><span class="p">(</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="nb">c_null_char</span>
-<a name="ln-601"></a>
-<a name="ln-602"></a><span class="k">end subroutine </span><span class="n">f_c_character</span>
-<a name="ln-603"></a>
+<a name="ln-581"></a><span class="k">end subroutine </span><span class="n">get_pairwise_dispersion_api</span>
+<a name="ln-582"></a>
+<a name="ln-583"></a>
+<a name="ln-584"></a><span class="c">!&gt; Calculate dispersion</span>
+<a name="ln-585"></a><span class="k">subroutine </span><span class="n">get_properties_api</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">vmol</span><span class="p">,</span> <span class="n">vdisp</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-586"></a>      <span class="p">&amp;</span> <span class="n">c_cn</span><span class="p">,</span> <span class="n">c_charges</span><span class="p">,</span> <span class="n">c_c6</span><span class="p">,</span> <span class="n">c_alpha</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-587"></a>      <span class="p">&amp;</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">namespace</span><span class="o">//</span><span class="s2">&quot;get_properties&quot;</span><span class="p">)</span>
+<a name="ln-588"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">verror</span>
+<a name="ln-589"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_error</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">error</span>
+<a name="ln-590"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vmol</span>
+<a name="ln-591"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_structure</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">mol</span>
+<a name="ln-592"></a>   <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">vdisp</span>
+<a name="ln-593"></a>   <span class="k">type</span><span class="p">(</span><span class="n">vp_model</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">disp</span>
+<a name="ln-594"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_cn</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-595"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
+<a name="ln-596"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_charges</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-597"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">charges</span><span class="p">(:)</span>
+<a name="ln-598"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_c6</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-599"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+<a name="ln-600"></a>   <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">c_alpha</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-601"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(:)</span>
+<a name="ln-602"></a>
+<a name="ln-603"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">debug</span><span class="p">)</span> <span class="k">print</span><span class="s1">&#39;(&quot;[Info]&quot;,1x, a)&#39;</span><span class="p">,</span> <span class="s2">&quot;get_properties&quot;</span>
 <a name="ln-604"></a>
-<a name="ln-605"></a><span class="k">subroutine </span><span class="n">c_f_character</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">lhs</span><span class="p">)</span>
-<a name="ln-606"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<a name="ln-607"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:,</span> <span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span>
-<a name="ln-608"></a>
-<a name="ln-609"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
-<a name="ln-610"></a>
-<a name="ln-611"></a>   <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-612"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">==</span> <span class="nb">c_null_char</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-613"></a><span class="k">         exit</span>
-<a name="ln-614"></a><span class="k">      end if</span>
-<a name="ln-615"></a><span class="k">   end do</span>
-<a name="ln-616"></a><span class="k">   allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span><span class="p">)</span>
-<a name="ln-617"></a>   <span class="n">lhs</span> <span class="o">=</span> <span class="nb">transfer</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">lhs</span><span class="p">)</span>
-<a name="ln-618"></a>
-<a name="ln-619"></a><span class="k">end subroutine </span><span class="n">c_f_character</span>
-<a name="ln-620"></a>
-<a name="ln-621"></a>
-<a name="ln-622"></a><span class="c">!&gt; Cold fusion check</span>
-<a name="ln-623"></a><span class="k">subroutine </span><span class="n">verify_structure</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
-<a name="ln-624"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
-<a name="ln-625"></a>   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-<a name="ln-626"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="nb">stat</span>
-<a name="ln-627"></a><span class="nb">   stat</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-628"></a>   <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
-<a name="ln-629"></a>      <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-630"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">norm2</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1.0e-9_wp</span><span class="p">)</span> <span class="nb">stat</span> <span class="o">=</span> <span class="nb">stat</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-631"></a>      <span class="k">end do</span>
-<a name="ln-632"></a><span class="k">   end do</span>
-<a name="ln-633"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-634"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Too close interatomic distances found&quot;</span><span class="p">)</span>
-<a name="ln-635"></a>   <span class="k">end if</span>
-<a name="ln-636"></a><span class="k">end subroutine </span><span class="n">verify_structure</span>
-<a name="ln-637"></a>
-<a name="ln-638"></a>
-<a name="ln-639"></a><span class="k">end module </span><span class="n">dftd4_api</span>
+<a name="ln-605"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">verror</span><span class="p">))</span> <span class="k">return</span>
+<a name="ln-606"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">verror</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-607"></a>
+<a name="ln-608"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vmol</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-609"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Molecular structure data is missing&quot;</span><span class="p">)</span>
+<a name="ln-610"></a>      <span class="k">return</span>
+<a name="ln-611"></a><span class="k">   end if</span>
+<a name="ln-612"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vmol</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
+<a name="ln-613"></a>
+<a name="ln-614"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">vdisp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-615"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="s2">&quot;Dispersion model is missing&quot;</span><span class="p">)</span>
+<a name="ln-616"></a>      <span class="k">return</span>
+<a name="ln-617"></a><span class="k">   end if</span>
+<a name="ln-618"></a><span class="k">   call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">vdisp</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+<a name="ln-619"></a>
+<a name="ln-620"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">charges</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">alpha</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="p">&amp;</span>
+<a name="ln-621"></a>      <span class="p">&amp;</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+<a name="ln-622"></a>   <span class="k">call </span><span class="n">get_properties</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">ptr</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="n">cn</span><span class="p">,</span> <span class="n">charges</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+<a name="ln-623"></a>
+<a name="ln-624"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_cn</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-625"></a><span class="k">      </span><span class="n">c_cn</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">cn</span><span class="p">))</span> <span class="o">=</span> <span class="n">cn</span>
+<a name="ln-626"></a>   <span class="k">end if</span>
+<a name="ln-627"></a>
+<a name="ln-628"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_charges</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-629"></a><span class="k">      </span><span class="n">c_charges</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">charges</span><span class="p">))</span> <span class="o">=</span> <span class="n">charges</span>
+<a name="ln-630"></a>   <span class="k">end if</span>
+<a name="ln-631"></a>
+<a name="ln-632"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_c6</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-633"></a><span class="k">      </span><span class="n">c_c6</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">))</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">c6</span><span class="p">,</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">c6</span><span class="p">)])</span>
+<a name="ln-634"></a>   <span class="k">end if</span>
+<a name="ln-635"></a>
+<a name="ln-636"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">c_alpha</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-637"></a><span class="k">      </span><span class="n">c_alpha</span><span class="p">(:</span><span class="n">size</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="o">=</span> <span class="n">alpha</span>
+<a name="ln-638"></a>   <span class="k">end if</span>
+<a name="ln-639"></a>
+<a name="ln-640"></a><span class="k">end subroutine </span><span class="n">get_properties_api</span>
+<a name="ln-641"></a>
+<a name="ln-642"></a>
+<a name="ln-643"></a><span class="k">subroutine </span><span class="n">f_c_character</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">lhs</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
+<a name="ln-644"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-645"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span>
+<a name="ln-646"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="nb">len</span>
+<a name="ln-647"></a><span class="nb">   </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">length</span>
+<a name="ln-648"></a>   <span class="n">length</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len_trim</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
+<a name="ln-649"></a>
+<a name="ln-650"></a>   <span class="n">lhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">)</span> <span class="o">=</span> <span class="nb">transfer</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">),</span> <span class="n">lhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">))</span>
+<a name="ln-651"></a>   <span class="n">lhs</span><span class="p">(</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="nb">c_null_char</span>
+<a name="ln-652"></a>
+<a name="ln-653"></a><span class="k">end subroutine </span><span class="n">f_c_character</span>
+<a name="ln-654"></a>
+<a name="ln-655"></a>
+<a name="ln-656"></a><span class="k">subroutine </span><span class="n">c_f_character</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">lhs</span><span class="p">)</span>
+<a name="ln-657"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rhs</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a name="ln-658"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:,</span> <span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span>
+<a name="ln-659"></a>
+<a name="ln-660"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ii</span>
+<a name="ln-661"></a>
+<a name="ln-662"></a>   <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">huge</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-663"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">==</span> <span class="nb">c_null_char</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-664"></a><span class="k">         exit</span>
+<a name="ln-665"></a><span class="k">      end if</span>
+<a name="ln-666"></a><span class="k">   end do</span>
+<a name="ln-667"></a><span class="k">   allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lhs</span><span class="p">)</span>
+<a name="ln-668"></a>   <span class="n">lhs</span> <span class="o">=</span> <span class="nb">transfer</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">lhs</span><span class="p">)</span>
+<a name="ln-669"></a>
+<a name="ln-670"></a><span class="k">end subroutine </span><span class="n">c_f_character</span>
+<a name="ln-671"></a>
+<a name="ln-672"></a>
+<a name="ln-673"></a><span class="c">!&gt; Cold fusion check</span>
+<a name="ln-674"></a><span class="k">subroutine </span><span class="n">verify_structure</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
+<a name="ln-675"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
+<a name="ln-676"></a>   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a name="ln-677"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="nb">stat</span>
+<a name="ln-678"></a><span class="nb">   stat</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-679"></a>   <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a name="ln-680"></a>      <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-681"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">norm2</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1.0e-9_wp</span><span class="p">)</span> <span class="nb">stat</span> <span class="o">=</span> <span class="nb">stat</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-682"></a>      <span class="k">end do</span>
+<a name="ln-683"></a><span class="k">   end do</span>
+<a name="ln-684"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-685"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Too close interatomic distances found&quot;</span><span class="p">)</span>
+<a name="ln-686"></a>   <span class="k">end if</span>
+<a name="ln-687"></a><span class="k">end subroutine </span><span class="n">verify_structure</span>
+<a name="ln-688"></a>
+<a name="ln-689"></a>
+<a name="ln-690"></a><span class="k">end module </span><span class="n">dftd4_api</span>
 </pre></div>
 
     </section>
@@ -922,7 +973,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-03-09 18:53  
+             on 2021-03-10 13:31  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>
