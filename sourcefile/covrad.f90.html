@@ -265,108 +265,108 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">! This file is part of dftd4.</span>
-<a name="ln-2"></a><span class="c">! SPDX-Identifier: LGPL-3.0-or-later</span>
-<a name="ln-3"></a><span class="c">!</span>
-<a name="ln-4"></a><span class="c">! dftd4 is free software: you can redistribute it and/or modify it under</span>
-<a name="ln-5"></a><span class="c">! the terms of the Lesser GNU General Public License as published by</span>
-<a name="ln-6"></a><span class="c">! the Free Software Foundation, either version 3 of the License, or</span>
-<a name="ln-7"></a><span class="c">! (at your option) any later version.</span>
-<a name="ln-8"></a><span class="c">!</span>
-<a name="ln-9"></a><span class="c">! dftd4 is distributed in the hope that it will be useful,</span>
-<a name="ln-10"></a><span class="c">! but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="ln-11"></a><span class="c">! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="ln-12"></a><span class="c">! Lesser GNU General Public License for more details.</span>
-<a name="ln-13"></a><span class="c">!</span>
-<a name="ln-14"></a><span class="c">! You should have received a copy of the Lesser GNU General Public License</span>
-<a name="ln-15"></a><span class="c">! along with dftd4.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
-<a name="ln-16"></a>
-<a name="ln-17"></a><span class="k">module </span><span class="n">dftd4_data_covrad</span>
-<a name="ln-18"></a>   <span class="k">use </span><span class="n">mctc_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span>
-<a name="ln-19"></a>   <span class="k">use </span><span class="n">mctc_io_convert</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">aatoau</span>
-<a name="ln-20"></a>   <span class="k">use </span><span class="n">mctc_io_symbols</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">to_number</span>
-<a name="ln-21"></a>   <span class="k">implicit none</span>
-<a name="ln-22"></a><span class="k">   private</span>
-<a name="ln-23"></a>
-<a name="ln-24"></a><span class="k">   public</span> <span class="kd">::</span> <span class="n">get_covalent_rad</span>
-<a name="ln-25"></a>
-<a name="ln-26"></a>
-<a name="ln-27"></a>   <span class="c">!&gt; Covalent radii for DFT-D3 coordination number</span>
-<a name="ln-28"></a>   <span class="k">interface </span><span class="n">get_covalent_rad</span>
-<a name="ln-29"></a>      <span class="k">module procedure</span> <span class="kd">::</span> <span class="n">get_covalent_rad_num</span>
-<a name="ln-30"></a>      <span class="k">module procedure</span> <span class="kd">::</span> <span class="n">get_covalent_rad_sym</span>
-<a name="ln-31"></a>   <span class="k">end interface </span><span class="n">get_covalent_rad</span>
-<a name="ln-32"></a>
-<a name="ln-33"></a>
-<a name="ln-34"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">max_elem</span> <span class="o">=</span> <span class="mi">118</span>
-<a name="ln-35"></a>
-<a name="ln-36"></a>   <span class="c">!&gt; Covalent radii (taken from Pyykko and Atsumi, Chem. Eur. J. 15, 2009,</span>
-<a name="ln-37"></a>   <span class="c">!  188-197), values for metals decreased by 10 %</span>
-<a name="ln-38"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">covalent_rad_2009</span><span class="p">(</span><span class="n">max_elem</span><span class="p">)</span> <span class="o">=</span> <span class="n">aatoau</span> <span class="o">*</span> <span class="p">[</span> <span class="p">&amp;</span>
-<a name="ln-39"></a>      <span class="p">&amp;</span> <span class="mf">0.32_wp</span><span class="p">,</span><span class="mf">0.46_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! H,He</span>
-<a name="ln-40"></a>      <span class="p">&amp;</span> <span class="mf">1.20_wp</span><span class="p">,</span><span class="mf">0.94_wp</span><span class="p">,</span><span class="mf">0.77_wp</span><span class="p">,</span><span class="mf">0.75_wp</span><span class="p">,</span><span class="mf">0.71_wp</span><span class="p">,</span><span class="mf">0.63_wp</span><span class="p">,</span><span class="mf">0.64_wp</span><span class="p">,</span><span class="mf">0.67_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Li-Ne</span>
-<a name="ln-41"></a>      <span class="p">&amp;</span> <span class="mf">1.40_wp</span><span class="p">,</span><span class="mf">1.25_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.04_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.02_wp</span><span class="p">,</span><span class="mf">0.99_wp</span><span class="p">,</span><span class="mf">0.96_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Na-Ar</span>
-<a name="ln-42"></a>      <span class="p">&amp;</span> <span class="mf">1.76_wp</span><span class="p">,</span><span class="mf">1.54_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! K,Ca</span>
-<a name="ln-43"></a>      <span class="p">&amp;</span>                 <span class="mf">1.33_wp</span><span class="p">,</span><span class="mf">1.22_wp</span><span class="p">,</span><span class="mf">1.21_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.07_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Sc-</span>
-<a name="ln-44"></a>      <span class="p">&amp;</span>                 <span class="mf">1.04_wp</span><span class="p">,</span><span class="mf">1.00_wp</span><span class="p">,</span><span class="mf">0.99_wp</span><span class="p">,</span><span class="mf">1.01_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Zn</span>
-<a name="ln-45"></a>      <span class="p">&amp;</span>                 <span class="mf">1.12_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.14_wp</span><span class="p">,</span><span class="mf">1.17_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Ga-Kr</span>
-<a name="ln-46"></a>      <span class="p">&amp;</span> <span class="mf">1.89_wp</span><span class="p">,</span><span class="mf">1.67_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Rb,Sr</span>
-<a name="ln-47"></a>      <span class="p">&amp;</span>                 <span class="mf">1.47_wp</span><span class="p">,</span><span class="mf">1.39_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span><span class="mf">1.24_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Y-</span>
-<a name="ln-48"></a>      <span class="p">&amp;</span>                 <span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.08_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Cd</span>
-<a name="ln-49"></a>      <span class="p">&amp;</span>                 <span class="mf">1.28_wp</span><span class="p">,</span><span class="mf">1.26_wp</span><span class="p">,</span><span class="mf">1.26_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! In-Xe</span>
-<a name="ln-50"></a>      <span class="p">&amp;</span> <span class="mf">2.09_wp</span><span class="p">,</span><span class="mf">1.76_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Cs,Ba</span>
-<a name="ln-51"></a>      <span class="p">&amp;</span>         <span class="mf">1.62_wp</span><span class="p">,</span><span class="mf">1.47_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.57_wp</span><span class="p">,</span><span class="mf">1.56_wp</span><span class="p">,</span><span class="mf">1.55_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! La-Eu</span>
-<a name="ln-52"></a>      <span class="p">&amp;</span>         <span class="mf">1.52_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.50_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.53_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Gd-Yb</span>
-<a name="ln-53"></a>      <span class="p">&amp;</span>                 <span class="mf">1.46_wp</span><span class="p">,</span><span class="mf">1.37_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span><span class="mf">1.18_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Lu-</span>
-<a name="ln-54"></a>      <span class="p">&amp;</span>                 <span class="mf">1.16_wp</span><span class="p">,</span><span class="mf">1.11_wp</span><span class="p">,</span><span class="mf">1.12_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Hg</span>
-<a name="ln-55"></a>      <span class="p">&amp;</span>                 <span class="mf">1.30_wp</span><span class="p">,</span><span class="mf">1.30_wp</span><span class="p">,</span><span class="mf">1.36_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span><span class="mf">1.38_wp</span><span class="p">,</span><span class="mf">1.42_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Tl-Rn</span>
-<a name="ln-56"></a>      <span class="p">&amp;</span> <span class="mf">2.01_wp</span><span class="p">,</span><span class="mf">1.81_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Fr,Ra</span>
-<a name="ln-57"></a>      <span class="p">&amp;</span>      <span class="mf">1.67_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.52_wp</span><span class="p">,</span><span class="mf">1.53_wp</span><span class="p">,</span><span class="mf">1.54_wp</span><span class="p">,</span><span class="mf">1.55_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Ac-Am</span>
-<a name="ln-58"></a>      <span class="p">&amp;</span>      <span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.50_wp</span><span class="p">,</span><span class="mf">1.56_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Cm-No</span>
-<a name="ln-59"></a>      <span class="p">&amp;</span>                 <span class="mf">1.45_wp</span><span class="p">,</span><span class="mf">1.41_wp</span><span class="p">,</span><span class="mf">1.34_wp</span><span class="p">,</span><span class="mf">1.29_wp</span><span class="p">,</span><span class="mf">1.27_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Lr-</span>
-<a name="ln-60"></a>      <span class="p">&amp;</span>                 <span class="mf">1.21_wp</span><span class="p">,</span><span class="mf">1.16_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span><span class="mf">1.22_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Cn</span>
-<a name="ln-61"></a>      <span class="p">&amp;</span>                 <span class="mf">1.36_wp</span><span class="p">,</span><span class="mf">1.43_wp</span><span class="p">,</span><span class="mf">1.46_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.57_wp</span> <span class="p">]</span> <span class="c">! Nh-Og</span>
-<a name="ln-62"></a>
-<a name="ln-63"></a>   <span class="c">!&gt; D3 covalent radii used to construct the coordination number</span>
-<a name="ln-64"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">covalent_rad_d3</span><span class="p">(</span><span class="n">max_elem</span><span class="p">)</span> <span class="o">=</span> <span class="p">&amp;</span>
-<a name="ln-65"></a>      <span class="p">&amp;</span> <span class="mf">4.0_wp</span> <span class="o">/</span> <span class="mf">3.0_wp</span> <span class="o">*</span> <span class="n">covalent_rad_2009</span>
-<a name="ln-66"></a>
-<a name="ln-67"></a><span class="k">contains</span>
-<a name="ln-68"></a>
-<a name="ln-69"></a>
-<a name="ln-70"></a><span class="c">!&gt; Get covalent radius for a given element symbol</span>
-<a name="ln-71"></a><span class="k">elemental function </span><span class="n">get_covalent_rad_sym</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
-<a name="ln-72"></a>
-<a name="ln-73"></a>   <span class="c">!&gt; Element symbol</span>
-<a name="ln-74"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sym</span>
-<a name="ln-75"></a>
-<a name="ln-76"></a>   <span class="c">!&gt; Covalent radius</span>
-<a name="ln-77"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rad</span>
-<a name="ln-78"></a>
-<a name="ln-79"></a>   <span class="n">rad</span> <span class="o">=</span> <span class="n">get_covalent_rad</span><span class="p">(</span><span class="n">to_number</span><span class="p">(</span><span class="n">sym</span><span class="p">))</span>
-<a name="ln-80"></a>
-<a name="ln-81"></a><span class="k">end function </span><span class="n">get_covalent_rad_sym</span>
-<a name="ln-82"></a>
-<a name="ln-83"></a>
-<a name="ln-84"></a><span class="c">!&gt; Get covalent radius for a given atomic number</span>
-<a name="ln-85"></a><span class="k">elemental function </span><span class="n">get_covalent_rad_num</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
-<a name="ln-86"></a>
-<a name="ln-87"></a>   <span class="c">!&gt; Atomic number</span>
-<a name="ln-88"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">num</span>
-<a name="ln-89"></a>
-<a name="ln-90"></a>   <span class="c">!&gt; Covalent radius</span>
-<a name="ln-91"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rad</span>
-<a name="ln-92"></a>
-<a name="ln-93"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">covalent_rad_d3</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-94"></a><span class="k">      </span><span class="n">rad</span> <span class="o">=</span> <span class="n">covalent_rad_d3</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-<a name="ln-95"></a>   <span class="k">else</span>
-<a name="ln-96"></a><span class="k">      </span><span class="n">rad</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-97"></a>   <span class="k">end if</span>
-<a name="ln-98"></a>
-<a name="ln-99"></a><span class="k">end function </span><span class="n">get_covalent_rad_num</span>
-<a name="ln-100"></a>
-<a name="ln-101"></a>
-<a name="ln-102"></a><span class="k">end module </span><span class="n">dftd4_data_covrad</span>
+    <div class="hl"><pre><span></span><a id="ln-1" name="ln-1"></a><span class="c">! This file is part of dftd4.</span>
+<a id="ln-2" name="ln-2"></a><span class="c">! SPDX-Identifier: LGPL-3.0-or-later</span>
+<a id="ln-3" name="ln-3"></a><span class="c">!</span>
+<a id="ln-4" name="ln-4"></a><span class="c">! dftd4 is free software: you can redistribute it and/or modify it under</span>
+<a id="ln-5" name="ln-5"></a><span class="c">! the terms of the Lesser GNU General Public License as published by</span>
+<a id="ln-6" name="ln-6"></a><span class="c">! the Free Software Foundation, either version 3 of the License, or</span>
+<a id="ln-7" name="ln-7"></a><span class="c">! (at your option) any later version.</span>
+<a id="ln-8" name="ln-8"></a><span class="c">!</span>
+<a id="ln-9" name="ln-9"></a><span class="c">! dftd4 is distributed in the hope that it will be useful,</span>
+<a id="ln-10" name="ln-10"></a><span class="c">! but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a id="ln-11" name="ln-11"></a><span class="c">! MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a id="ln-12" name="ln-12"></a><span class="c">! Lesser GNU General Public License for more details.</span>
+<a id="ln-13" name="ln-13"></a><span class="c">!</span>
+<a id="ln-14" name="ln-14"></a><span class="c">! You should have received a copy of the Lesser GNU General Public License</span>
+<a id="ln-15" name="ln-15"></a><span class="c">! along with dftd4.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<a id="ln-16" name="ln-16"></a>
+<a id="ln-17" name="ln-17"></a><span class="k">module </span><span class="n">dftd4_data_covrad</span>
+<a id="ln-18" name="ln-18"></a>   <span class="k">use </span><span class="n">mctc_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">wp</span>
+<a id="ln-19" name="ln-19"></a>   <span class="k">use </span><span class="n">mctc_io_convert</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">aatoau</span>
+<a id="ln-20" name="ln-20"></a>   <span class="k">use </span><span class="n">mctc_io_symbols</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">to_number</span>
+<a id="ln-21" name="ln-21"></a>   <span class="k">implicit none</span>
+<a id="ln-22" name="ln-22"></a><span class="k">   private</span>
+<a id="ln-23" name="ln-23"></a>
+<a id="ln-24" name="ln-24"></a><span class="k">   public</span> <span class="kd">::</span> <span class="n">get_covalent_rad</span>
+<a id="ln-25" name="ln-25"></a>
+<a id="ln-26" name="ln-26"></a>
+<a id="ln-27" name="ln-27"></a>   <span class="c">!&gt; Covalent radii for DFT-D3 coordination number</span>
+<a id="ln-28" name="ln-28"></a>   <span class="k">interface </span><span class="n">get_covalent_rad</span>
+<a id="ln-29" name="ln-29"></a>      <span class="k">module procedure</span> <span class="kd">::</span> <span class="n">get_covalent_rad_num</span>
+<a id="ln-30" name="ln-30"></a>      <span class="k">module procedure</span> <span class="kd">::</span> <span class="n">get_covalent_rad_sym</span>
+<a id="ln-31" name="ln-31"></a>   <span class="k">end interface </span><span class="n">get_covalent_rad</span>
+<a id="ln-32" name="ln-32"></a>
+<a id="ln-33" name="ln-33"></a>
+<a id="ln-34" name="ln-34"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">max_elem</span> <span class="o">=</span> <span class="mi">118</span>
+<a id="ln-35" name="ln-35"></a>
+<a id="ln-36" name="ln-36"></a>   <span class="c">!&gt; Covalent radii (taken from Pyykko and Atsumi, Chem. Eur. J. 15, 2009,</span>
+<a id="ln-37" name="ln-37"></a>   <span class="c">!  188-197), values for metals decreased by 10 %</span>
+<a id="ln-38" name="ln-38"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">covalent_rad_2009</span><span class="p">(</span><span class="n">max_elem</span><span class="p">)</span> <span class="o">=</span> <span class="n">aatoau</span> <span class="o">*</span> <span class="p">[</span> <span class="p">&amp;</span>
+<a id="ln-39" name="ln-39"></a>      <span class="p">&amp;</span> <span class="mf">0.32_wp</span><span class="p">,</span><span class="mf">0.46_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! H,He</span>
+<a id="ln-40" name="ln-40"></a>      <span class="p">&amp;</span> <span class="mf">1.20_wp</span><span class="p">,</span><span class="mf">0.94_wp</span><span class="p">,</span><span class="mf">0.77_wp</span><span class="p">,</span><span class="mf">0.75_wp</span><span class="p">,</span><span class="mf">0.71_wp</span><span class="p">,</span><span class="mf">0.63_wp</span><span class="p">,</span><span class="mf">0.64_wp</span><span class="p">,</span><span class="mf">0.67_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Li-Ne</span>
+<a id="ln-41" name="ln-41"></a>      <span class="p">&amp;</span> <span class="mf">1.40_wp</span><span class="p">,</span><span class="mf">1.25_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.04_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.02_wp</span><span class="p">,</span><span class="mf">0.99_wp</span><span class="p">,</span><span class="mf">0.96_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Na-Ar</span>
+<a id="ln-42" name="ln-42"></a>      <span class="p">&amp;</span> <span class="mf">1.76_wp</span><span class="p">,</span><span class="mf">1.54_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! K,Ca</span>
+<a id="ln-43" name="ln-43"></a>      <span class="p">&amp;</span>                 <span class="mf">1.33_wp</span><span class="p">,</span><span class="mf">1.22_wp</span><span class="p">,</span><span class="mf">1.21_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.07_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Sc-</span>
+<a id="ln-44" name="ln-44"></a>      <span class="p">&amp;</span>                 <span class="mf">1.04_wp</span><span class="p">,</span><span class="mf">1.00_wp</span><span class="p">,</span><span class="mf">0.99_wp</span><span class="p">,</span><span class="mf">1.01_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Zn</span>
+<a id="ln-45" name="ln-45"></a>      <span class="p">&amp;</span>                 <span class="mf">1.12_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.10_wp</span><span class="p">,</span><span class="mf">1.14_wp</span><span class="p">,</span><span class="mf">1.17_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Ga-Kr</span>
+<a id="ln-46" name="ln-46"></a>      <span class="p">&amp;</span> <span class="mf">1.89_wp</span><span class="p">,</span><span class="mf">1.67_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Rb,Sr</span>
+<a id="ln-47" name="ln-47"></a>      <span class="p">&amp;</span>                 <span class="mf">1.47_wp</span><span class="p">,</span><span class="mf">1.39_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span><span class="mf">1.24_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Y-</span>
+<a id="ln-48" name="ln-48"></a>      <span class="p">&amp;</span>                 <span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.08_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Cd</span>
+<a id="ln-49" name="ln-49"></a>      <span class="p">&amp;</span>                 <span class="mf">1.28_wp</span><span class="p">,</span><span class="mf">1.26_wp</span><span class="p">,</span><span class="mf">1.26_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! In-Xe</span>
+<a id="ln-50" name="ln-50"></a>      <span class="p">&amp;</span> <span class="mf">2.09_wp</span><span class="p">,</span><span class="mf">1.76_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Cs,Ba</span>
+<a id="ln-51" name="ln-51"></a>      <span class="p">&amp;</span>         <span class="mf">1.62_wp</span><span class="p">,</span><span class="mf">1.47_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.57_wp</span><span class="p">,</span><span class="mf">1.56_wp</span><span class="p">,</span><span class="mf">1.55_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! La-Eu</span>
+<a id="ln-52" name="ln-52"></a>      <span class="p">&amp;</span>         <span class="mf">1.52_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.50_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.53_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Gd-Yb</span>
+<a id="ln-53" name="ln-53"></a>      <span class="p">&amp;</span>                 <span class="mf">1.46_wp</span><span class="p">,</span><span class="mf">1.37_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span><span class="mf">1.23_wp</span><span class="p">,</span><span class="mf">1.18_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Lu-</span>
+<a id="ln-54" name="ln-54"></a>      <span class="p">&amp;</span>                 <span class="mf">1.16_wp</span><span class="p">,</span><span class="mf">1.11_wp</span><span class="p">,</span><span class="mf">1.12_wp</span><span class="p">,</span><span class="mf">1.13_wp</span><span class="p">,</span><span class="mf">1.32_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Hg</span>
+<a id="ln-55" name="ln-55"></a>      <span class="p">&amp;</span>                 <span class="mf">1.30_wp</span><span class="p">,</span><span class="mf">1.30_wp</span><span class="p">,</span><span class="mf">1.36_wp</span><span class="p">,</span><span class="mf">1.31_wp</span><span class="p">,</span><span class="mf">1.38_wp</span><span class="p">,</span><span class="mf">1.42_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Tl-Rn</span>
+<a id="ln-56" name="ln-56"></a>      <span class="p">&amp;</span> <span class="mf">2.01_wp</span><span class="p">,</span><span class="mf">1.81_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Fr,Ra</span>
+<a id="ln-57" name="ln-57"></a>      <span class="p">&amp;</span>      <span class="mf">1.67_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.52_wp</span><span class="p">,</span><span class="mf">1.53_wp</span><span class="p">,</span><span class="mf">1.54_wp</span><span class="p">,</span><span class="mf">1.55_wp</span><span class="p">,</span><span class="mf">1.49_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Ac-Am</span>
+<a id="ln-58" name="ln-58"></a>      <span class="p">&amp;</span>      <span class="mf">1.49_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.51_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.50_wp</span><span class="p">,</span><span class="mf">1.56_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Cm-No</span>
+<a id="ln-59" name="ln-59"></a>      <span class="p">&amp;</span>                 <span class="mf">1.45_wp</span><span class="p">,</span><span class="mf">1.41_wp</span><span class="p">,</span><span class="mf">1.34_wp</span><span class="p">,</span><span class="mf">1.29_wp</span><span class="p">,</span><span class="mf">1.27_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! Lr-</span>
+<a id="ln-60" name="ln-60"></a>      <span class="p">&amp;</span>                 <span class="mf">1.21_wp</span><span class="p">,</span><span class="mf">1.16_wp</span><span class="p">,</span><span class="mf">1.15_wp</span><span class="p">,</span><span class="mf">1.09_wp</span><span class="p">,</span><span class="mf">1.22_wp</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! -Cn</span>
+<a id="ln-61" name="ln-61"></a>      <span class="p">&amp;</span>                 <span class="mf">1.36_wp</span><span class="p">,</span><span class="mf">1.43_wp</span><span class="p">,</span><span class="mf">1.46_wp</span><span class="p">,</span><span class="mf">1.58_wp</span><span class="p">,</span><span class="mf">1.48_wp</span><span class="p">,</span><span class="mf">1.57_wp</span> <span class="p">]</span> <span class="c">! Nh-Og</span>
+<a id="ln-62" name="ln-62"></a>
+<a id="ln-63" name="ln-63"></a>   <span class="c">!&gt; D3 covalent radii used to construct the coordination number</span>
+<a id="ln-64" name="ln-64"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">covalent_rad_d3</span><span class="p">(</span><span class="n">max_elem</span><span class="p">)</span> <span class="o">=</span> <span class="p">&amp;</span>
+<a id="ln-65" name="ln-65"></a>      <span class="p">&amp;</span> <span class="mf">4.0_wp</span> <span class="o">/</span> <span class="mf">3.0_wp</span> <span class="o">*</span> <span class="n">covalent_rad_2009</span>
+<a id="ln-66" name="ln-66"></a>
+<a id="ln-67" name="ln-67"></a><span class="k">contains</span>
+<a id="ln-68" name="ln-68"></a>
+<a id="ln-69" name="ln-69"></a>
+<a id="ln-70" name="ln-70"></a><span class="c">!&gt; Get covalent radius for a given element symbol</span>
+<a id="ln-71" name="ln-71"></a><span class="k">elemental function </span><span class="n">get_covalent_rad_sym</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
+<a id="ln-72" name="ln-72"></a>
+<a id="ln-73" name="ln-73"></a>   <span class="c">!&gt; Element symbol</span>
+<a id="ln-74" name="ln-74"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sym</span>
+<a id="ln-75" name="ln-75"></a>
+<a id="ln-76" name="ln-76"></a>   <span class="c">!&gt; Covalent radius</span>
+<a id="ln-77" name="ln-77"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rad</span>
+<a id="ln-78" name="ln-78"></a>
+<a id="ln-79" name="ln-79"></a>   <span class="n">rad</span> <span class="o">=</span> <span class="n">get_covalent_rad</span><span class="p">(</span><span class="n">to_number</span><span class="p">(</span><span class="n">sym</span><span class="p">))</span>
+<a id="ln-80" name="ln-80"></a>
+<a id="ln-81" name="ln-81"></a><span class="k">end function </span><span class="n">get_covalent_rad_sym</span>
+<a id="ln-82" name="ln-82"></a>
+<a id="ln-83" name="ln-83"></a>
+<a id="ln-84" name="ln-84"></a><span class="c">!&gt; Get covalent radius for a given atomic number</span>
+<a id="ln-85" name="ln-85"></a><span class="k">elemental function </span><span class="n">get_covalent_rad_num</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
+<a id="ln-86" name="ln-86"></a>
+<a id="ln-87" name="ln-87"></a>   <span class="c">!&gt; Atomic number</span>
+<a id="ln-88" name="ln-88"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">num</span>
+<a id="ln-89" name="ln-89"></a>
+<a id="ln-90" name="ln-90"></a>   <span class="c">!&gt; Covalent radius</span>
+<a id="ln-91" name="ln-91"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rad</span>
+<a id="ln-92" name="ln-92"></a>
+<a id="ln-93" name="ln-93"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">covalent_rad_d3</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-94" name="ln-94"></a><span class="k">      </span><span class="n">rad</span> <span class="o">=</span> <span class="n">covalent_rad_d3</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<a id="ln-95" name="ln-95"></a>   <span class="k">else</span>
+<a id="ln-96" name="ln-96"></a><span class="k">      </span><span class="n">rad</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-97" name="ln-97"></a>   <span class="k">end if</span>
+<a id="ln-98" name="ln-98"></a>
+<a id="ln-99" name="ln-99"></a><span class="k">end function </span><span class="n">get_covalent_rad_num</span>
+<a id="ln-100" name="ln-100"></a>
+<a id="ln-101" name="ln-101"></a>
+<a id="ln-102" name="ln-102"></a><span class="k">end module </span><span class="n">dftd4_data_covrad</span>
 </pre></div>
 
     </section>
@@ -385,7 +385,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-03 07:38  
+             on 2021-05-07 11:22  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>
