@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.2% of total for procedures.">92 statements</a>
+    title=" 3.9% of total for procedures.">114 statements</a>
      </li> 
      
      
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine new_d4_model(self, mol, ga, gc, wf)
+public subroutine new_d4_model(self, mol, ga, gc, wf, ref)
     
     
    
@@ -264,7 +264,7 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
   
 <tr>
   
-  <td><span class="anchor" id="variable-ga~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-ga~6"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -279,7 +279,7 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
   
 <tr>
   
-  <td><span class="anchor" id="variable-gc~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gc~6"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -300,6 +300,21 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
   
   <td></td><td>::</td>
   <td><strong>wf</strong></td><td><p>Weighting factor for coordination number interpolation</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ref~2"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ref</strong></td><td><p>Reference charge selection</p></td>
   
 </tr>
 
@@ -370,7 +385,7 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">new_d4_model</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">wf</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">new_d4_model</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
 
    <span class="c">!&gt; Instance of the dispersion model</span>
    <span class="k">type</span><span class="p">(</span><span class="n">d4_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
@@ -387,12 +402,21 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
    <span class="c">!&gt; Weighting factor for coordination number interpolation</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">wf</span>
 
+   <span class="c">!&gt; Reference charge selection</span>
+   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">ref</span>
+
    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">isp</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">iref</span><span class="p">,</span> <span class="n">jsp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">jref</span>
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
+   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span><span class="p">,</span> <span class="n">ref_charge</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">aiw</span><span class="p">(</span><span class="mi">23</span><span class="p">),</span> <span class="n">c6</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">thopi</span> <span class="o">=</span> <span class="mf">3.0_wp</span><span class="o">/</span><span class="n">pi</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">ga</span><span class="p">))</span> <span class="k">then</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">ref</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">ref_charge</span> <span class="o">=</span> <span class="n">ref</span>
+   <span class="k">else</span>
+<span class="k">      </span><span class="n">ref_charge</span> <span class="o">=</span> <span class="n">d4_ref</span><span class="p">%</span><span class="n">eeq</span>
+   <span class="k">end if</span>
+
+<span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">ga</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">self</span><span class="p">%</span><span class="n">ga</span> <span class="o">=</span> <span class="n">ga</span>
    <span class="k">else</span>
 <span class="k">      </span><span class="n">self</span><span class="p">%</span><span class="n">ga</span> <span class="o">=</span> <span class="n">ga_default</span>
@@ -454,10 +478,18 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
    <span class="k">end do</span>
 
 <span class="k">   allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span><span class="p">))</span>
-   <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
-      <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">set_refq</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">izp</span><span class="p">)</span>
-   <span class="k">end do</span>
+   <span class="k">select case</span><span class="p">(</span><span class="n">ref_charge</span><span class="p">)</span>
+   <span class="k">case </span><span class="n">default</span>
+      <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
+         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
+         <span class="k">call </span><span class="n">set_refq_eeq</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">izp</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">   case</span><span class="p">(</span><span class="n">d4_ref</span><span class="p">%</span><span class="n">gfn2</span><span class="p">)</span>
+      <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
+         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
+         <span class="k">call </span><span class="n">set_refq_gfn2</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">izp</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">   end select</span>
 
 <span class="k">   allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">ngw</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span><span class="p">))</span>
    <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
@@ -466,10 +498,18 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
    <span class="k">end do</span>
 
 <span class="k">   allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">aiw</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span><span class="p">))</span>
-   <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
-      <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">set_refalpha</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">aiw</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">ga</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">gc</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
-   <span class="k">end do</span>
+   <span class="k">select case</span><span class="p">(</span><span class="n">ref_charge</span><span class="p">)</span>
+   <span class="k">case </span><span class="n">default</span>
+      <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
+         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
+         <span class="k">call </span><span class="n">set_refalpha_eeq</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">aiw</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">ga</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">gc</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">   case</span><span class="p">(</span><span class="n">d4_ref</span><span class="p">%</span><span class="n">gfn2</span><span class="p">)</span>
+      <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
+         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
+         <span class="k">call </span><span class="n">set_refalpha_gfn2</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">aiw</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">isp</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">ga</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">gc</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">   end select</span>
 
 <span class="k">   allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">c6</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span><span class="p">))</span>
    <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nid</span>
@@ -509,7 +549,7 @@ public subroutine new_d4_model(self, mol, ga, gc, wf)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-07 11:22  
+             on 2021-05-10 21:17  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

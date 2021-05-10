@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_refq_num &ndash; DFT-D4</title>
+    <title>set_refalpha_gfn2 &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,8 +112,8 @@
     
   
   <div class="row">
-    <h1>set_refq_num
-      <small>Subroutine</small>
+    <h1>set_refalpha_gfn2
+   <small>Interface</small>
     
     </h1>
     
@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.4% of total for procedures.">10 statements</a>
+    title="<p> 0.1% of total for procedures.</p>Including implementation: 31 statements,  1.1% of total for procedures.">4 statements</a>
      </li> 
      
      
@@ -147,7 +147,7 @@
      <li><a href='../module/dftd4_reference.html'>dftd4_reference</a></li>
     
   
-     <li class="active">set_refq_num</li>
+     <li class="active">set_refalpha_gfn2</li>
   </ol>
 </div>
 </div>
@@ -162,7 +162,7 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
+      
 <div id="sidebar">
   
 <h3>Contents</h3>
@@ -187,13 +187,19 @@
 
 
 
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/set_refq_num.html#src">set_refq_num</a>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-0">Module Procedures</a></h3></div>
+  <div id="modprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../interface/set_refalpha_gfn2.html#moduleprocedure-set_refalpha_gfn2_sym">set_refalpha_gfn2_sym</a>
+      
+      <a class="list-group-item" href="../interface/set_refalpha_gfn2.html#moduleprocedure-set_refalpha_gfn2_num">set_refalpha_gfn2_num</a>
+      
+    </div>
   </div>
 </div>
+
 
 
 
@@ -202,74 +208,14 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-private pure subroutine set_refq_num(q, num)
-    
-    
+      <h2>public interface set_refalpha_gfn2</h2>
    
-</h2>
-    
-  
-
-
-    
-    <p>Set the reference partial charges for an atomic number</p>
-    
-
-    <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-q~4"></span>real(kind=wp),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>q</strong>(:)</td><td><p>Reference partial charge</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-num~6"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>num</strong></td><td><p>Atomic number</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    
-    
-    
-    
      
-    <br>
+     
+    
 
-    <section class="visible-xs visible-sm hidden-md">
-      
+     <section class="visible-xs visible-sm hidden-md">
+       
 <h3>Contents</h3>
  
 
@@ -292,64 +238,244 @@ private pure subroutine set_refq_num(q, num)
 
 
 
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/set_refq_num.html#src">set_refq_num</a>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-1">Module Procedures</a></h3></div>
+  <div id="modprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../interface/set_refalpha_gfn2.html#moduleprocedure-set_refalpha_gfn2_sym">set_refalpha_gfn2_sym</a>
+      
+      <a class="list-group-item" href="../interface/set_refalpha_gfn2.html#moduleprocedure-set_refalpha_gfn2_num">set_refalpha_gfn2_num</a>
+      
+    </div>
   </div>
 </div>
 
 
 
-    </section>
-    <br class="visible-xs visible-sm hidden-md">
 
+     </section>
+     <br class="visible-xs visible-sm hidden-md">
+     
+  
+
+  
+
+  
+   <h2>Module Procedures</h2>
+   
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-set_refalpha_gfn2_sym"></span><h3>
+private pure subroutine <a href='../proc/set_refalpha_gfn2_sym.html'>set_refalpha_gfn2_sym</a>(alpha, ga, gc, sym)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
     
 
+
+
+
+
+
+
+<p>Set the reference polarizibility for an element symbol</p>
     
+    <h4>Arguments</h4>
     
-    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>alpha</strong>(:,:)</td><td><p>Reference polarizibility</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ga</strong></td><td><p>Maximum charge scaling height</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gc</strong></td><td><p>Charge scaling steepness</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>sym</strong></td><td><p>Element symbol</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
     
     
 
-    
-    
-    
-    
-    
-
-
-    
-    
-    
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">pure subroutine </span><span class="n">set_refq_num</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
-
-   <span class="c">!&gt; Reference partial charge</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">q</span><span class="p">(:)</span>
-
-   <span class="c">!&gt; Atomic number</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">num</span>
-
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ref</span>
-
-   <span class="n">q</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-   <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">refn</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">ref</span> <span class="o">=</span> <span class="n">get_nref</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-      <span class="n">q</span><span class="p">(:</span><span class="n">ref</span><span class="p">)</span> <span class="o">=</span> <span class="n">clsq</span><span class="p">(:</span><span class="n">ref</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
-   <span class="k">end if</span>
-
-<span class="k">end subroutine </span><span class="n">set_refq_num</span>
-</pre></div>
-
-    </section>
-    <br>
-    
-    
-    </div>
   </div>
+  </div>
+
+   
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-set_refalpha_gfn2_num"></span><h3>
+private pure subroutine <a href='../proc/set_refalpha_gfn2_num.html'>set_refalpha_gfn2_num</a>(alpha, ga, gc, num)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Set the reference polarizibility for an atomic number</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>alpha</strong>(:,:)</td><td><p>Reference polarizibility</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ga</strong></td><td><p>Maximum charge scaling height</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gc</strong></td><td><p>Charge scaling steepness</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>num</strong></td><td><p>Atomic number</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+   
+     
+
+ </div>
+</div>
 
 
     <hr>    
@@ -363,7 +489,7 @@ private pure subroutine set_refq_num(q, num)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-07 11:22  
+             on 2021-05-10 21:17  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

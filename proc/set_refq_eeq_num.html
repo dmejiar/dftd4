@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>set_refalpha_num &ndash; DFT-D4</title>
+    <title>set_refq_eeq_num &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,7 +112,7 @@
     
   
   <div class="row">
-    <h1>set_refalpha_num
+    <h1>set_refq_eeq_num
       <small>Subroutine</small>
     
     </h1>
@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.7% of total for procedures.">20 statements</a>
+    title=" 0.3% of total for procedures.">10 statements</a>
      </li> 
      
      
@@ -147,7 +147,7 @@
      <li><a href='../module/dftd4_reference.html'>dftd4_reference</a></li>
     
   
-     <li class="active">set_refalpha_num</li>
+     <li class="active">set_refq_eeq_num</li>
   </ol>
 </div>
 </div>
@@ -191,7 +191,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/set_refalpha_num.html#src">set_refalpha_num</a>
+    <a class="list-group-item" href="../proc/set_refq_eeq_num.html#src">set_refq_eeq_num</a>
   </div>
 </div>
 
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private pure subroutine set_refalpha_num(alpha, ga, gc, num)
+private pure subroutine set_refq_eeq_num(q, num)
     
     
    
@@ -213,7 +213,7 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
 
 
     
-    <p>Set the reference polarizibility for an atomic number</p>
+    <p>Set the reference partial charges for an atomic number</p>
     
 
     <h3>Arguments</h3>
@@ -234,12 +234,12 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
   
 <tr>
   
-  <td><span class="anchor" id="variable-alpha~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-q~4"></span>real(kind=wp),</td>
   <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>alpha</strong>(:,:)</td><td><p>Reference polarizibility</p></td>
+  <td><strong>q</strong>(:)</td><td><p>Reference partial charge</p></td>
   
 </tr>
 
@@ -249,37 +249,7 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
   
 <tr>
   
-  <td><span class="anchor" id="variable-ga~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ga</strong></td><td><p>Maximum charge scaling height</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-gc~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>gc</strong></td><td><p>Charge scaling steepness</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-num~3"></span>integer,</td>
+  <td><span class="anchor" id="variable-num~7"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -326,7 +296,7 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/set_refalpha_num.html#src">set_refalpha_num</a>
+    <a class="list-group-item" href="../proc/set_refq_eeq_num.html#src">set_refq_eeq_num</a>
   </div>
 </div>
 
@@ -355,39 +325,23 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">pure subroutine </span><span class="n">set_refalpha_num</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">gc</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">pure subroutine </span><span class="n">set_refq_eeq_num</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
 
-   <span class="c">!&gt; Reference polarizibility</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(:,</span> <span class="p">:)</span>
-
-   <span class="c">!&gt; Maximum charge scaling height</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ga</span>
-
-   <span class="c">!&gt; Charge scaling steepness</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gc</span>
+   <span class="c">!&gt; Reference partial charge</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">q</span><span class="p">(:)</span>
 
    <span class="c">!&gt; Atomic number</span>
    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">num</span>
 
    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ref</span>
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ir</span><span class="p">,</span> <span class="k">is</span>
-<span class="k">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iz</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">aiw</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
 
-   <span class="n">alpha</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+   <span class="n">q</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">refn</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">      </span><span class="n">ref</span> <span class="o">=</span> <span class="n">get_nref</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-      <span class="k">do </span><span class="n">ir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ref</span>
-         <span class="k">is</span> <span class="o">=</span> <span class="n">refsys</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
-         <span class="n">iz</span> <span class="o">=</span> <span class="n">get_effective_charge</span><span class="p">(</span><span class="k">is</span><span class="p">)</span>
-         <span class="n">aiw</span> <span class="o">=</span> <span class="n">sscale</span><span class="p">(</span><span class="k">is</span><span class="p">)</span><span class="o">*</span><span class="n">secaiw</span><span class="p">(:,</span> <span class="k">is</span><span class="p">)</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span>    <span class="o">*</span> <span class="n">zeta</span><span class="p">(</span><span class="n">ga</span><span class="p">,</span> <span class="n">get_hardness</span><span class="p">(</span><span class="k">is</span><span class="p">)</span><span class="o">*</span><span class="n">gc</span><span class="p">,</span> <span class="n">iz</span><span class="p">,</span> <span class="n">clsh</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span><span class="o">+</span><span class="n">iz</span><span class="p">)</span>
-         <span class="n">alpha</span><span class="p">(:,</span> <span class="n">ir</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ascale</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">alphaiw</span><span class="p">(:,</span> <span class="n">ir</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="p">&amp;</span>
-            <span class="p">&amp;</span>            <span class="o">-</span> <span class="n">hcount</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span><span class="o">*</span><span class="n">aiw</span><span class="p">),</span> <span class="mf">0.0_wp</span><span class="p">)</span>
-      <span class="k">end do</span>
-<span class="k">   end if</span>
+      <span class="n">q</span><span class="p">(:</span><span class="n">ref</span><span class="p">)</span> <span class="o">=</span> <span class="n">clsq</span><span class="p">(:</span><span class="n">ref</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+   <span class="k">end if</span>
 
-<span class="k">end subroutine </span><span class="n">set_refalpha_num</span>
+<span class="k">end subroutine </span><span class="n">set_refq_eeq_num</span>
 </pre></div>
 
     </section>
@@ -409,7 +363,7 @@ private pure subroutine set_refalpha_num(alpha, ga, gc, num)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-07 11:22  
+             on 2021-05-10 21:17  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>
