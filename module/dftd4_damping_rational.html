@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.0% of total for modules and submodules.">234 statements</a>
+    title=" 3.4% of total for modules and submodules.">263 statements</a>
      </li> 
      
      
@@ -211,6 +211,10 @@
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion2">get_dispersion2</a>
       
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion3">get_dispersion3</a>
+      
+      <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion_derivs">get_dispersion_derivs</a>
+      
+      <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion_energy">get_dispersion_energy</a>
       
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_pairwise_dispersion2">get_pairwise_dispersion2</a>
       
@@ -321,6 +325,10 @@
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion2">get_dispersion2</a>
       
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion3">get_dispersion3</a>
+      
+      <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion_derivs">get_dispersion_derivs</a>
+      
+      <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_dispersion_energy">get_dispersion_energy</a>
       
       <a class="list-group-item" href="../module/dftd4_damping_rational.html#proc-get_pairwise_dispersion2">get_pairwise_dispersion2</a>
       
@@ -1086,6 +1094,394 @@ private subroutine <a href='../proc/get_dispersion3.html'>get_dispersion3</a>(se
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_dispersion_derivs"></span><h3>
+private subroutine <a href='../proc/get_dispersion_derivs.html'>get_dispersion_derivs</a>(self, mol, trans, cutoff, r4r2, c6, dc6dcn, dc6dq, energy, dEdcn, dEdq, gradient, sigma)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Evaluation of the dispersion energy expression</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>dc6dcn</strong>(:,:)</td><td><p>Derivative of the C6 w.r.t. the coordination number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>dc6dq</strong>(:,:)</td><td><p>Derivative of the C6 w.r.t. the partial charges</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:)</td><td><p>Dispersion energy</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>dEdcn</strong>(:)</td><td><p>Derivative of the energy w.r.t. the coordination number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>dEdq</strong>(:)</td><td><p>Derivative of the energy w.r.t. the partial charges</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gradient</strong>(:,:)</td><td><p>Dispersion gradient</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>sigma</strong>(:,:)</td><td><p>Dispersion virial</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_dispersion_energy"></span><h3>
+private subroutine <a href='../proc/get_dispersion_energy.html'>get_dispersion_energy</a>(self, mol, trans, cutoff, r4r2, c6, energy)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Evaluation of the dispersion energy expression</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:)</td><td><p>Dispersion energy</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-get_pairwise_dispersion2"></span><h3>
 private subroutine <a href='../proc/get_pairwise_dispersion2.html'>get_pairwise_dispersion2</a>(self, mol, trans, cutoff, r4r2, c6, energy)
     
@@ -1402,7 +1798,7 @@ private subroutine <a href='../proc/get_pairwise_dispersion3.html'>get_pairwise_
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-27 12:53  
+             on 2021-06-14 19:39  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

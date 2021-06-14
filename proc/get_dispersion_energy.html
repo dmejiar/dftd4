@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>get_pairwise_dispersion2 &ndash; DFT-D4</title>
+    <title>get_dispersion_energy &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,7 +112,7 @@
     
   
   <div class="row">
-    <h1>get_pairwise_dispersion2
+    <h1>get_dispersion_energy
       <small>Subroutine</small>
     
     </h1>
@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.2% of total for procedures.">35 statements</a>
+    title=" 1.1% of total for procedures.">34 statements</a>
      </li> 
      
      
@@ -147,7 +147,7 @@
      <li><a href='../module/dftd4_damping_rational.html'>dftd4_damping_rational</a></li>
     
   
-     <li class="active">get_pairwise_dispersion2</li>
+     <li class="active">get_dispersion_energy</li>
   </ol>
 </div>
 </div>
@@ -191,7 +191,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_pairwise_dispersion2.html#src">get_pairwise_dispersion2</a>
+    <a class="list-group-item" href="../proc/get_dispersion_energy.html#src">get_dispersion_energy</a>
   </div>
 </div>
 
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, energy)
+private subroutine get_dispersion_energy(self, mol, trans, cutoff, r4r2, c6, energy)
     
     
    
@@ -213,7 +213,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
 
 
     
-    <p>Evaluation of the dispersion energy expression projected on atomic pairs</p>
+    <p>Evaluation of the dispersion energy expression</p>
     
 
     <h3>Arguments</h3>
@@ -234,7 +234,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~11"></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~10"></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -249,7 +249,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~29"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~28"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -264,7 +264,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~21"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~20"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -279,7 +279,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~16"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~15"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -294,7 +294,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-r4r2~11"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-r4r2~10"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -309,7 +309,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~14"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -324,12 +324,12 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~17"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~16"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>energy</strong>(:,:)</td><td><p>Dispersion energy</p></td>
+  <td><strong>energy</strong>(:)</td><td><p>Dispersion energy</p></td>
   
 </tr>
 
@@ -371,7 +371,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_pairwise_dispersion2.html#src">get_pairwise_dispersion2</a>
+    <a class="list-group-item" href="../proc/get_dispersion_energy.html#src">get_dispersion_energy</a>
   </div>
 </div>
 
@@ -400,7 +400,7 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_pairwise_dispersion2</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_dispersion_energy</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
    <span class="k">class</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
@@ -421,13 +421,12 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
 
    <span class="c">!&gt; Dispersion energy</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
 
    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">jtr</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">r2</span><span class="p">,</span> <span class="n">cutoff2</span><span class="p">,</span> <span class="n">r0ij</span><span class="p">,</span> <span class="n">rrij</span><span class="p">,</span> <span class="n">c6ij</span><span class="p">,</span> <span class="n">t6</span><span class="p">,</span> <span class="n">t8</span><span class="p">,</span> <span class="n">edisp</span><span class="p">,</span> <span class="n">dE</span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">s6</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">abs</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">s8</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">))</span> <span class="k">return</span>
-<span class="k">   </span><span class="n">cutoff2</span> <span class="o">=</span> <span class="n">cutoff</span><span class="o">*</span><span class="n">cutoff</span>
+   <span class="n">cutoff2</span> <span class="o">=</span> <span class="n">cutoff</span><span class="o">*</span><span class="n">cutoff</span>
 
    <span class="c">!$omp parallel do schedule(runtime) default(none) reduction(+:energy) &amp;</span>
    <span class="c">!$omp shared(mol, self, c6, trans, cutoff2, r4r2) &amp;</span>
@@ -452,15 +451,15 @@ private subroutine get_pairwise_dispersion2(self, mol, trans, cutoff, r4r2, c6, 
 
             <span class="n">dE</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">edisp</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
 
-            <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
+            <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
+<span class="k">               </span><span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
             <span class="k">end if</span>
 <span class="k">         end do</span>
 <span class="k">      end do</span>
 <span class="k">   end do</span>
 
-<span class="k">end subroutine </span><span class="n">get_pairwise_dispersion2</span>
+<span class="k">end subroutine </span><span class="n">get_dispersion_energy</span>
 </pre></div>
 
     </section>
