@@ -233,6 +233,41 @@ Alternatively, the project is accessible by the Fortran package manager (<a href
 <p>The complete API is available from <code>dftd4</code> module, the individual modules are available to the user as well but are not part of the public API and therefore not guaranteed to remain stable.
 ABI compatibility is only guaranteed for the same minor version.</p>
 <p>The communication with the Fortran API uses the <code>error_type</code> and <code>structure_type</code> of the modular computation tool chain library (mctc-lib) to handle errors and represent geometries, respectively.</p>
+<h4 id="building-vasp-with-support-for-d4">Building Vasp with support for D4</h4>
+<p>To use <code>dftd4</code> in Vasp the compatibility layer for the 2.5.x API has to be enable with <code>-Dapi_v2=true</code> (meson) or <code>-DAPI_V2=ON</code> (CMake).
+It is important to build <code>dftd4</code> with the same Fortran compiler you build Vasp with.</p>
+<p>After you completed the installation of <code>dftd4`, make sure it is findable by</code>pkg-config``, you can check by running:</p>
+<div class="codehilite"><pre><span></span><code>pkg-config --modversion dftd4
+</code></pre></div>
+
+<p>If you <code>dftd4</code> installation is not findable, you have to update your environment variables.
+One option is to provide a module file for your <code>dftd4</code> installation.
+The example module file below can be placed in your <code>MODULEPATH</code> to provide access to an installation in <code>~/opt/dftd4/3.2.0</code>.
+Retry the above comment after loading the <code>dftd4</code> and adjust the module file until <code>pkg-config</code> finds your installation.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;dftd4&quot;</span>
+<span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;3.2.0&quot;</span>
+<span class="kd">local</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">pathJoin</span><span class="p">(</span><span class="nb">os.getenv</span><span class="p">(</span><span class="s2">&quot;HOME&quot;</span><span class="p">),</span> <span class="s2">&quot;opt&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">libdir</span> <span class="o">=</span> <span class="s2">&quot;lib&quot;</span>  <span class="c1">-- or lib64</span>
+
+<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Name        : &quot;</span> <span class="o">..</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Version     : &quot;</span> <span class="o">..</span> <span class="n">version</span><span class="p">)</span>
+<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Description : Generally applicable charge dependent London dispersion correction&quot;</span><span class="p">)</span>
+<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;URL         : https://github.com/dftd4/dftd4&quot;</span><span class="p">)</span>
+
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">))</span>
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;MANPATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="s2">&quot;man&quot;</span><span class="p">))</span>
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;CPATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">))</span>
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;LIBRARY_PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">libdir</span><span class="p">))</span>
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;LD_LIBRARY_PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">libdir</span><span class="p">))</span>
+<span class="n">prepend_path</span><span class="p">(</span><span class="s2">&quot;PKG_CONFIG_PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">libdir</span><span class="p">,</span> <span class="s2">&quot;pkgconfig&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>To enable support for D4 in Vasp add the following lines to the Makefile:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">CPP_OPTIONS</span> <span class="o">+=</span> -DDFTD4
+<span class="nv">LLIBS</span>       <span class="o">+=</span> <span class="k">$(</span>shell pkg-config --libs dftd4<span class="k">)</span>
+<span class="nv">INCS</span>        <span class="o">+=</span> <span class="k">$(</span>shell pkg-config --cflags dftd4<span class="k">)</span>
+</code></pre></div>
+
 <h3 id="c-api">C API</h3>
 <p>The C API provides access to the basic Fortran objects and their most important methods to interact with them.
 All Fortran objects are available as opaque <code>void*</code> in C and can only be manipulated with the correct API calls.
@@ -348,6 +383,10 @@ additional terms or conditions.</p>
                   
                 
                   
+                    <li><a href='./sourcefile/compat.f90.html'>compat.f90</a></li>
+                  
+                
+                  
                     <li><a href='./sourcefile/covrad.f90.html'>covrad.f90</a></li>
                   
                 
@@ -368,11 +407,9 @@ additional terms or conditions.</p>
                   
                 
                   
-                    <li><a href='./sourcefile/disp.f90.html'>disp.f90</a></li>
+                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
                   
                 
-                  
-                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
                   
                 
                   
@@ -405,6 +442,26 @@ additional terms or conditions.</p>
               <ul>
                 
                   
+                    <li><a href='./module/class_molecule.html'>class_molecule</a></li>
+                  
+                
+                  
+                    <li><a href='./module/class_param.html'>class_param</a></li>
+                  
+                
+                  
+                    <li><a href='./module/class_results.html'>class_results</a></li>
+                  
+                
+                  
+                    <li><a href='./module/class_set.html'>class_set</a></li>
+                  
+                
+                  
+                    <li><a href='./module/class_wsc.html'>class_wsc</a></li>
+                  
+                
+                  
                     <li><a href='./module/dftd4.html'>dftd4</a></li>
                   
                 
@@ -421,31 +478,31 @@ additional terms or conditions.</p>
                   
                 
                   
-                    <li><a href='./module/dftd4_cutoff.html'>dftd4_cutoff</a></li>
-                  
-                
-                  
-                    <li><a href='./module/dftd4_damping.html'>dftd4_damping</a></li>
-                  
-                
-                  
-                    <li><a href='./module/dftd4_damping_atm.html'>dftd4_damping_atm</a></li>
-                  
-                
-                  
-                    <li><a href='./module/dftd4_damping_rational.html'>dftd4_damping_rational</a></li>
-                  
-                
-                  
-                    <li><a href='./module/dftd4_data.html'>dftd4_data</a></li>
-                  
-                
-                  
-                    <li><a href='./module/dftd4_data_covrad.html'>dftd4_data_covrad</a></li>
+                    <li><a href='./module/dftd4_compat.html'>dftd4_compat</a></li>
                   
                 
                   
                     <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
                   
                 
                   
@@ -477,6 +534,10 @@ additional terms or conditions.</p>
 		  <div class="col-xs-6 col-sm-3">
               <h3>Procedures</h3>
               <ul>
+                
+                  
+                    <li><a href='./proc/allocate.html'>allocate</a></li>
+                  
                 
                   
                     <li><a href='./proc/ascii_atomic_radii.html'>ascii_atomic_radii</a></li>
@@ -511,15 +572,29 @@ additional terms or conditions.</p>
                   
                 
                   
-                    <li><a href='./proc/check_error_api.html'>check_error_api</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/custom_d4_model_api.html'>custom_d4_model_api</a></li>
+                    <li><a href='./proc/calculate_distances.html'>calculate_distances</a></li>
                   
                 
                   
                     <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
                   
                 
                   
@@ -751,7 +826,27 @@ additional terms or conditions.</p>
                   
                 
                   
+                    <li><a href='./type/dftd_options.html'>dftd_options</a></li>
+                  
+                
+                  
+                    <li><a href='./type/dftd_parameter.html'>dftd_parameter</a></li>
+                  
+                
+                  
+                    <li><a href='./type/dftd_results.html'>dftd_results</a></li>
+                  
+                
+                  
                     <li><a href='./type/enum_ref.html'>enum_ref</a></li>
+                  
+                
+                  
+                    <li><a href='./type/mctc_logger.html'>mctc_logger</a></li>
+                  
+                
+                  
+                    <li><a href='./type/molecule.html'>molecule</a></li>
                   
                 
                   
@@ -763,19 +858,15 @@ additional terms or conditions.</p>
                   
                 
                   
-                    <li><a href='./type/vp_error.html'>vp_error</a></li>
+                    <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
                   
                 
                   
-                    <li><a href='./type/vp_model.html'>vp_model</a></li>
+                
                   
                 
                   
-                    <li><a href='./type/vp_param.html'>vp_param</a></li>
-                  
                 
-                  
-                    <li><a href='./type/vp_structure.html'>vp_structure</a></li>
                   
                 
               </ul>
@@ -794,7 +885,7 @@ additional terms or conditions.</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-06-25 14:06  
+             on 2021-07-16 14:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>

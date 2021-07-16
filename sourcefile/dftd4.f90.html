@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.2% of total for source files.">12 statements</a>
+    title=" 0.2% of total for source files.">13 statements</a>
      </li> 
      
      
@@ -282,18 +282,19 @@
 <a id="ln-15" name="ln-15"></a><span class="c">! along with dftd4.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 <a id="ln-16" name="ln-16"></a>
 <a id="ln-17" name="ln-17"></a><span class="k">module </span><span class="n">dftd4</span>
-<a id="ln-18" name="ln-18"></a>   <span class="k">use </span><span class="n">dftd4_cutoff</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">realspace_cutoff</span><span class="p">,</span> <span class="n">get_lattice_points</span>
-<a id="ln-19" name="ln-19"></a>   <span class="k">use </span><span class="n">dftd4_disp</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_properties</span><span class="p">,</span> <span class="n">get_pairwise_dispersion</span>
-<a id="ln-20" name="ln-20"></a>   <span class="k">use </span><span class="n">dftd4_ncoord</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_coordination_number</span>
-<a id="ln-21" name="ln-21"></a>   <span class="k">use </span><span class="n">dftd4_damping</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">damping_param</span>
-<a id="ln-22" name="ln-22"></a>   <span class="k">use </span><span class="n">dftd4_damping_rational</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">rational_damping_param</span>
-<a id="ln-23" name="ln-23"></a>   <span class="k">use </span><span class="n">dftd4_model</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">d4_model</span><span class="p">,</span> <span class="n">new_d4_model</span>
-<a id="ln-24" name="ln-24"></a>   <span class="k">use </span><span class="n">dftd4_param</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_rational_damping</span>
-<a id="ln-25" name="ln-25"></a>   <span class="k">use </span><span class="n">dftd4_version</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dftd4_version</span>
-<a id="ln-26" name="ln-26"></a>   <span class="k">implicit none</span>
-<a id="ln-27" name="ln-27"></a><span class="k">   public</span>
-<a id="ln-28" name="ln-28"></a>
-<a id="ln-29" name="ln-29"></a><span class="k">end module </span><span class="n">dftd4</span>
+<a id="ln-18" name="ln-18"></a>   <span class="k">use </span><span class="n">mctc_io</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">structure_type</span><span class="p">,</span> <span class="n">new</span>
+<a id="ln-19" name="ln-19"></a>   <span class="k">use </span><span class="n">dftd4_cutoff</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">realspace_cutoff</span><span class="p">,</span> <span class="n">get_lattice_points</span>
+<a id="ln-20" name="ln-20"></a>   <span class="k">use </span><span class="n">dftd4_disp</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_properties</span><span class="p">,</span> <span class="n">get_pairwise_dispersion</span>
+<a id="ln-21" name="ln-21"></a>   <span class="k">use </span><span class="n">dftd4_ncoord</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_coordination_number</span>
+<a id="ln-22" name="ln-22"></a>   <span class="k">use </span><span class="n">dftd4_damping</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">damping_param</span>
+<a id="ln-23" name="ln-23"></a>   <span class="k">use </span><span class="n">dftd4_damping_rational</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">rational_damping_param</span>
+<a id="ln-24" name="ln-24"></a>   <span class="k">use </span><span class="n">dftd4_model</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">d4_model</span><span class="p">,</span> <span class="n">new_d4_model</span>
+<a id="ln-25" name="ln-25"></a>   <span class="k">use </span><span class="n">dftd4_param</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_rational_damping</span>
+<a id="ln-26" name="ln-26"></a>   <span class="k">use </span><span class="n">dftd4_version</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">get_dftd4_version</span>
+<a id="ln-27" name="ln-27"></a>   <span class="k">implicit none</span>
+<a id="ln-28" name="ln-28"></a><span class="k">   public</span>
+<a id="ln-29" name="ln-29"></a>
+<a id="ln-30" name="ln-30"></a><span class="k">end module </span><span class="n">dftd4</span>
 </pre></div>
 
     </section>
@@ -312,7 +313,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-06-25 14:06  
+             on 2021-07-16 14:06  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> DFT-D4 was developed by Grimme group Bonn</p></div>
