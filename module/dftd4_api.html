@@ -306,14 +306,14 @@
 <span class="cm"> *</span>
 <span class="cm"> * You should have received a copy of the GNU Lesser General Public License</span>
 <span class="cm"> * along with dftd4.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 <span class="cp">#pragma once</span>
 
 <span class="cp">#ifdef __cplusplus</span>
 <span class="cp">#define DFTD4_API_ENTRY extern &quot;C&quot;</span>
 <span class="cp">#else</span>
 <span class="cp">#define DFTD4_API_ENTRY extern</span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
 <span class="cp">#endif</span>
 <span class="cp">#define DFTD4_API_CALL</span>
 <span class="cp">#define DFTD4_API_SUFFIX__V_3_0</span>
@@ -321,149 +321,149 @@
 <span class="cp">#define DFTD4_API_SUFFIX__V_3_2</span>
 
 <span class="c1">/// Error handle class</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd4_error</span><span class="o">*</span> <span class="n">dftd4_error</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_dftd4_error</span><span class="o">*</span><span class="w"> </span><span class="n">dftd4_error</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Molecular structure data class</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd4_structure</span><span class="o">*</span> <span class="n">dftd4_structure</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_dftd4_structure</span><span class="o">*</span><span class="w"> </span><span class="n">dftd4_structure</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Dispersion model class</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd4_model</span><span class="o">*</span> <span class="n">dftd4_model</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_dftd4_model</span><span class="o">*</span><span class="w"> </span><span class="n">dftd4_model</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Damping parameter class</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd4_param</span><span class="o">*</span> <span class="n">dftd4_param</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span> <span class="nc">_dftd4_param</span><span class="o">*</span><span class="w"> </span><span class="n">dftd4_param</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Global API queries</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Obtain library version as major * 10000 + minor + 100 + patch</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">int</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_get_version</span><span class="p">()</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_get_version</span><span class="p">()</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Error handle class</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Create new error handle object</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_error</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_new_error</span><span class="p">()</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_error</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_new_error</span><span class="p">()</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Check error handle status</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">int</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_check_error</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_check_error</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Get error message from error handle</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_get_error</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                <span class="kt">char</span><span class="o">*</span> <span class="cm">/* buffer */</span><span class="p">,</span>
-                <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="cm">/* buffersize */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_get_error</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="cm">/* buffer */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="cm">/* buffersize */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Delete error handle object</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_delete_error</span><span class="p">(</span><span class="n">dftd4_error</span><span class="o">*</span> <span class="cm">/* error */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_delete_error</span><span class="p">(</span><span class="n">dftd4_error</span><span class="o">*</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Molecular structure data class</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Create new molecular structure data (quantities in Bohr)</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_structure</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_new_structure</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">int</span> <span class="cm">/* natoms */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="cm">/* numbers [natoms] */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="cm">/* positions [natoms][3] */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="cm">/* charge */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="cm">/* lattice [3][3] */</span><span class="p">,</span>
-                    <span class="k">const</span> <span class="kt">bool</span><span class="o">*</span> <span class="cm">/* periodic [3] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_new_structure</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="cm">/* natoms */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="cm">/* numbers [natoms] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* positions [natoms][3] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* charge */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* lattice [3][3] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="cm">/* periodic [3] */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Delete molecular structure data</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_delete_structure</span><span class="p">(</span><span class="n">dftd4_structure</span><span class="o">*</span> <span class="cm">/* mol */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_delete_structure</span><span class="p">(</span><span class="n">dftd4_structure</span><span class="o">*</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Update coordinates and lattice parameters (quantities in Bohr)</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_update_structure</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                       <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
-                       <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="cm">/* positions [natoms][3] */</span><span class="p">,</span>
-                       <span class="k">const</span> <span class="kt">double</span><span class="o">*</span> <span class="cm">/* lattice [3][3] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_update_structure</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* positions [natoms][3] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* lattice [3][3] */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Dispersion model class</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Create new D4 dispersion model</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_model</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_new_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                   <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_model</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_new_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Create new D4 dispersion model</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_model</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_custom_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                      <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
-                      <span class="kt">double</span> <span class="cm">/* ga */</span><span class="p">,</span>
-                      <span class="kt">double</span> <span class="cm">/* gc */</span><span class="p">,</span>
-                      <span class="kt">double</span> <span class="cm">/* wf */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_model</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_custom_d4_model</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* ga */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* gc */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                      </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* wf */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Delete dispersion model</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_delete_model</span><span class="p">(</span><span class="n">dftd4_model</span><span class="o">*</span> <span class="cm">/* disp */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_delete_model</span><span class="p">(</span><span class="n">dftd4_model</span><span class="o">*</span><span class="w"> </span><span class="cm">/* disp */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Damping parameter class</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Create new rational damping parameters</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_param</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_new_rational_damping</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* s6 */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* s8 */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* s9 */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* a1 */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* a2 */</span><span class="p">,</span>
-                           <span class="kt">double</span> <span class="cm">/* alp */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_param</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_new_rational_damping</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* s6 */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* s8 */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* s9 */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* a1 */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* a2 */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                           </span><span class="kt">double</span><span class="w"> </span><span class="cm">/* alp */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Load rational damping parameters from internal storage</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="n">dftd4_param</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_load_rational_damping</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                            <span class="kt">char</span><span class="o">*</span> <span class="cm">/* method */</span><span class="p">,</span>
-                            <span class="kt">bool</span> <span class="cm">/* mdb */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="n">dftd4_param</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_load_rational_damping</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                            </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="cm">/* method */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                            </span><span class="kt">bool</span><span class="w"> </span><span class="cm">/* mdb */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Delete damping parameters</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_delete_param</span><span class="p">(</span><span class="n">dftd4_param</span><span class="o">*</span> <span class="cm">/* param */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_delete_param</span><span class="p">(</span><span class="n">dftd4_param</span><span class="o">*</span><span class="w"> </span><span class="cm">/* param */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Perform dispersion calculations</span>
-<span class="cm">**/</span>
+<span class="cm">**/</span><span class="w"></span>
 
 <span class="c1">/// Evaluate properties related to the dispersion model</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_get_properties</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                     <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
-                     <span class="n">dftd4_model</span> <span class="cm">/* disp */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* cn[n] */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* charges[n] */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* c6[n*n] */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* alpha[n] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_get_properties</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="n">dftd4_model</span><span class="w"> </span><span class="cm">/* disp */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* cn[n] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* charges[n] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* c6[n*n] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* alpha[n] */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_1</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Evaluate the dispersion energy and its derivatives</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_get_dispersion</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                     <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
-                     <span class="n">dftd4_model</span> <span class="cm">/* disp */</span><span class="p">,</span>
-                     <span class="n">dftd4_param</span> <span class="cm">/* param */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* energy */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* gradient[n][3] */</span><span class="p">,</span>
-                     <span class="kt">double</span><span class="o">*</span> <span class="cm">/* sigma[3][3] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_get_dispersion</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="n">dftd4_model</span><span class="w"> </span><span class="cm">/* disp */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="n">dftd4_param</span><span class="w"> </span><span class="cm">/* param */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* energy */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* gradient[n][3] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                     </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* sigma[3][3] */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_0</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">/// Evaluate the pairwise representation of the dispersion energy</span>
-<span class="n">DFTD4_API_ENTRY</span> <span class="kt">void</span> <span class="n">DFTD4_API_CALL</span>
-<span class="n">dftd4_get_pairwise_dispersion</span><span class="p">(</span><span class="n">dftd4_error</span> <span class="cm">/* error */</span><span class="p">,</span>
-                              <span class="n">dftd4_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
-                              <span class="n">dftd4_model</span> <span class="cm">/* disp */</span><span class="p">,</span>
-                              <span class="n">dftd4_param</span> <span class="cm">/* param */</span><span class="p">,</span>
-                              <span class="kt">double</span><span class="o">*</span> <span class="cm">/* pair_energy2[n][n] */</span><span class="p">,</span>
-                              <span class="kt">double</span><span class="o">*</span> <span class="cm">/* pair_energy3[n][n] */</span><span class="p">)</span> <span class="n">DFTD4_API_SUFFIX__V_3_2</span><span class="p">;</span>
+<span class="n">DFTD4_API_ENTRY</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DFTD4_API_CALL</span><span class="w"></span>
+<span class="n">dftd4_get_pairwise_dispersion</span><span class="p">(</span><span class="n">dftd4_error</span><span class="w"> </span><span class="cm">/* error */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">dftd4_structure</span><span class="w"> </span><span class="cm">/* mol */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">dftd4_model</span><span class="w"> </span><span class="cm">/* disp */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="n">dftd4_param</span><span class="w"> </span><span class="cm">/* param */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* pair_energy2[n][n] */</span><span class="p">,</span><span class="w"></span>
+<span class="w">                              </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="cm">/* pair_energy3[n][n] */</span><span class="p">)</span><span class="w"> </span><span class="n">DFTD4_API_SUFFIX__V_3_2</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
       <br>
     
@@ -481,23 +481,23 @@
     
     <li><a href='../module/dftd4_disp.html'>dftd4_disp</a></li>
     
-    <li><a href='../module/dftd4_utils.html'>dftd4_utils</a></li>
-    
-    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_env.html">mctc_env</a></li>
-    
-    <li>mctc_io_structure</li>
-    
-    <li><a href="http://fortranwiki.org/fortran/show/iso_c_binding">iso_c_binding</a></li>
-    
     <li><a href='../module/dftd4_damping.html'>dftd4_damping</a></li>
     
-    <li><a href='../module/dftd4_damping_rational.html'>dftd4_damping_rational</a></li>
-    
-    <li><a href='../module/dftd4_version.html'>dftd4_version</a></li>
+    <li><a href='../module/dftd4_utils.html'>dftd4_utils</a></li>
     
     <li><a href='../module/dftd4_model.html'>dftd4_model</a></li>
     
+    <li>mctc_io_structure</li>
+    
+    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_env.html">mctc_env</a></li>
+    
+    <li><a href='../module/dftd4_version.html'>dftd4_version</a></li>
+    
+    <li><a href='../module/dftd4_damping_rational.html'>dftd4_damping_rational</a></li>
+    
     <li><a href='../module/dftd4_cutoff.html'>dftd4_cutoff</a></li>
+    
+    <li><a href="http://fortranwiki.org/fortran/show/iso_c_binding">iso_c_binding</a></li>
     
   </ul>
       </li>
@@ -2772,7 +2772,7 @@ private subroutine <a href='../proc/verify_structure.html'>verify_structure</a>(
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-08-13 05:46  
+             on 2021-09-06 18:20  
             
           </p>
         </div>
