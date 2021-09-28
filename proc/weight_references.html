@@ -220,7 +220,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
 
     
     <p>Calculate the weights of the reference system and the derivatives w.r.t.
- coordination number for later use.</p>
+coordination number for later use.</p>
     
 
     <h3>Arguments</h3>
@@ -241,7 +241,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~9"></span>class(<a href='../type/d4_model.html'>d4_model</a>),</td>
+  <td><span class="anchor" id="variable-self~6"></span>class(<a href='../type/d4_model.html'>d4_model</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -256,7 +256,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~7"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~18"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -271,7 +271,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
   
 <tr>
   
-  <td><span class="anchor" id="variable-cn~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cn~11"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -286,7 +286,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
   
 <tr>
   
-  <td><span class="anchor" id="variable-q~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-q~8"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -466,7 +466,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
                <span class="n">expd</span> <span class="o">=</span> <span class="n">expd</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">wf</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span> <span class="o">-</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">))</span> <span class="o">*</span> <span class="n">gw</span>
             <span class="k">end do</span>
 <span class="k">            </span><span class="n">gwk</span> <span class="o">=</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">norm</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">               if</span> <span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(:</span><span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">),</span> <span class="n">izp</span><span class="p">))</span> <span class="o">==</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">                  </span><span class="n">gwk</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
                <span class="k">else</span>
@@ -477,7 +477,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
             <span class="n">gwdq</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gwk</span> <span class="o">*</span> <span class="n">dzeta</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">ga</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span><span class="o">+</span><span class="n">zi</span><span class="p">,</span> <span class="n">q</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="o">+</span><span class="n">zi</span><span class="p">)</span>
 
             <span class="n">dgwk</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">*</span> <span class="p">(</span><span class="n">expd</span> <span class="o">-</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">dnorm</span> <span class="o">*</span> <span class="n">norm</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">dgwk</span><span class="p">))</span> <span class="k">then</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">dgwk</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">               </span><span class="n">dgwk</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
             <span class="k">end if</span>
 <span class="k">            </span><span class="n">gwdcn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dgwk</span> <span class="o">*</span> <span class="n">zeta</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">ga</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">q</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span><span class="o">+</span><span class="n">zi</span><span class="p">,</span> <span class="n">q</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="o">+</span><span class="n">zi</span><span class="p">)</span>
@@ -511,7 +511,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
                <span class="n">expw</span> <span class="o">=</span> <span class="n">expw</span> <span class="o">+</span> <span class="n">weight_cn</span><span class="p">(</span><span class="n">wf</span><span class="p">,</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span>
             <span class="k">end do</span>
 <span class="k">            </span><span class="n">gwk</span> <span class="o">=</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">norm</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">               if</span> <span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(:</span><span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">),</span> <span class="n">izp</span><span class="p">))</span> <span class="o">==</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">                  </span><span class="n">gwk</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
                <span class="k">else</span>
@@ -546,7 +546,7 @@ private subroutine weight_references(self, mol, cn, q, gwvec, gwdcn, gwdq)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-09-07 18:04  
+             on 2021-09-28 07:25  
             
           </p>
         </div>

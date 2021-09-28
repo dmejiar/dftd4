@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.8% of total for modules and submodules.">385 statements</a>
+    title=" 4.9% of total for modules and submodules.">390 statements</a>
      </li> 
      
      
@@ -223,11 +223,13 @@
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-dzeta">dzeta</a>
       
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-is_exceptional">is_exceptional</a>
+      
       <a class="list-group-item" href="../module/dftd4_model.html#proc-trapzd">trapzd</a>
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-weight_cn">weight_cn</a>
       
-      <a class="list-group-item" href="../module/dftd4_model.html#proc-zeta">zeta</a>
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-zeta~2">zeta</a>
       
     </div>
   </div>
@@ -279,17 +281,17 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_io.html">mctc_io</a></li>
-    
     <li><a href="http://fortranwiki.org/fortran/show/ieee_arithmetic">ieee_arithmetic</a></li>
-    
-    <li>mctc_io_constants</li>
     
     <li><a href='../module/dftd4_reference.html'>dftd4_reference</a></li>
     
-    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_env.html">mctc_env</a></li>
-    
     <li><a href='../module/dftd4_data.html'>dftd4_data</a></li>
+    
+    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_io.html">mctc_io</a></li>
+    
+    <li>mctc_io_constants</li>
+    
+    <li><a href="https://grimme-lab.github.io/mctc-lib/module/mctc_env.html">mctc_env</a></li>
     
   </ul>
       </li>
@@ -361,11 +363,13 @@
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-dzeta">dzeta</a>
       
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-is_exceptional">is_exceptional</a>
+      
       <a class="list-group-item" href="../module/dftd4_model.html#proc-trapzd">trapzd</a>
       
       <a class="list-group-item" href="../module/dftd4_model.html#proc-weight_cn">weight_cn</a>
       
-      <a class="list-group-item" href="../module/dftd4_model.html#proc-zeta">zeta</a>
+      <a class="list-group-item" href="../module/dftd4_model.html#proc-zeta~2">zeta</a>
       
     </div>
   </div>
@@ -520,7 +524,7 @@
   
   <td><span class="anchor" id="variable-aiw"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>aiw</strong>(:,:,:)</td><td></td><td></td><td><p>Reference dynamic polarizibilities</p></td>
   
@@ -534,7 +538,7 @@
   
   <td><span class="anchor" id="variable-c6"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>c6</strong>(:,:,:,:)</td><td></td><td></td><td><p>Reference C6 coefficients</p></td>
   
@@ -546,9 +550,9 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-cn"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cn~2"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>cn</strong>(:,:)</td><td></td><td></td><td><p>Reference coordination numbers</p></td>
   
@@ -562,7 +566,7 @@
   
   <td><span class="anchor" id="variable-en"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>en</strong>(:)</td><td></td><td></td><td><p>Electronegativity</p></td>
   
@@ -576,7 +580,7 @@
   
   <td><span class="anchor" id="variable-eta"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>eta</strong>(:)</td><td></td><td></td><td><p>Chemical hardness</p></td>
   
@@ -590,7 +594,7 @@
   
   <td><span class="anchor" id="variable-ga"></span>real(kind=wp),</td>
   
-  <td>public</td>
+  <td>private</td>
   <td></td><td>::</td>
   <td><strong>ga</strong></td><td></td><td></td><td><p>Charge scaling height</p></td>
   
@@ -604,7 +608,7 @@
   
   <td><span class="anchor" id="variable-gc"></span>real(kind=wp),</td>
   
-  <td>public</td>
+  <td>private</td>
   <td></td><td>::</td>
   <td><strong>gc</strong></td><td></td><td></td><td><p>Charge scaling steepness</p></td>
   
@@ -618,7 +622,7 @@
   
   <td><span class="anchor" id="variable-ngw"></span>integer,</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>ngw</strong>(:,:)</td><td></td><td></td><td><p>Number of Gaussian weights for each reference</p></td>
   
@@ -632,7 +636,7 @@
   
   <td><span class="anchor" id="variable-q"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>q</strong>(:,:)</td><td></td><td></td><td><p>Reference partial charges</p></td>
   
@@ -646,7 +650,7 @@
   
   <td><span class="anchor" id="variable-r4r2"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>r4r2</strong>(:)</td><td></td><td></td><td><p>Expectation values for C8 extrapolation</p></td>
   
@@ -660,7 +664,7 @@
   
   <td><span class="anchor" id="variable-rcov"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>rcov</strong>(:)</td><td></td><td></td><td><p>Covalent radii for coordination number</p></td>
   
@@ -674,7 +678,7 @@
   
   <td><span class="anchor" id="variable-ref"></span>integer,</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>ref</strong>(:)</td><td></td><td></td><td><p>Number of reference systems</p></td>
   
@@ -688,7 +692,7 @@
   
   <td><span class="anchor" id="variable-wf"></span>real(kind=wp),</td>
   
-  <td>public</td>
+  <td>private</td>
   <td></td><td>::</td>
   <td><strong>wf</strong></td><td></td><td></td><td><p>Weighting factor for CN interpolation</p></td>
   
@@ -702,7 +706,7 @@
   
   <td><span class="anchor" id="variable-zeff"></span>real(kind=wp),</td>
   
-  <td>public,</td>
+  <td>private,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>zeff</strong>(:)</td><td></td><td></td><td><p>Effective nuclear charges</p></td>
   
@@ -765,7 +769,7 @@
   
   <td><span class="anchor" id="variable-eeq"></span>integer,</td>
   
-  <td>public</td>
+  <td>private</td>
   <td></td><td>::</td>
   <td><strong>eeq</strong></td><td> =</td><td>1</td><td><p>Electronegativity equilibration charges</p></td>
   
@@ -779,7 +783,7 @@
   
   <td><span class="anchor" id="variable-gfn2"></span>integer,</td>
   
-  <td>public</td>
+  <td>private</td>
   <td></td><td>::</td>
   <td><strong>gfn2</strong></td><td> =</td><td>2</td><td><p>GFN2-xTB Mulliken partial charges</p></td>
   
@@ -909,6 +913,74 @@ private elemental function <a href='../proc/dzeta.html'>dzeta</a>(a, c, qref, qm
   
   
      <h4>Return Value <small>real(kind=wp)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-is_exceptional"></span><h3>
+private elemental function <a href='../proc/is_exceptional.html'>is_exceptional</a>(val)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Check whether we are dealing with an exceptional value, NaN or Inf</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
   </small></h4>
   
     
@@ -1077,8 +1149,8 @@ private elemental function <a href='../proc/weight_cn.html'>weight_cn</a>(wf, cn
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-zeta"></span><h3>
-private elemental function <a href='../proc/zeta.html'>zeta</a>(a, c, qref, qmod)
+  <div class="panel-heading codesum"><span class="anchor" id="proc-zeta~2"></span><h3>
+private elemental function <a href='../proc/zeta~2.html'>zeta</a>(a, c, qref, qmod)
     
     
    
@@ -1215,7 +1287,7 @@ private subroutine <a href='../proc/get_atomic_c6.html'>get_atomic_c6</a>(self, 
 
 
 <p>Calculate atomic dispersion coefficients and their derivatives w.r.t.
- the coordination numbers and atomic partial charges.</p>
+the coordination numbers and atomic partial charges.</p>
     
     <h4>Arguments</h4>
     
@@ -1380,7 +1452,7 @@ private subroutine <a href='../proc/get_polarizibilities.html'>get_polarizibilit
 
 
 <p>Calculate atomic polarizibilities and their derivatives w.r.t.
- the coordination numbers and atomic partial charges.</p>
+the coordination numbers and atomic partial charges.</p>
     
     <h4>Arguments</h4>
     
@@ -1679,7 +1751,7 @@ private subroutine <a href='../proc/weight_references.html'>weight_references</a
 
 
 <p>Calculate the weights of the reference system and the derivatives w.r.t.
- coordination number for later use.</p>
+coordination number for later use.</p>
     
     <h4>Arguments</h4>
     
@@ -1831,7 +1903,7 @@ private subroutine <a href='../proc/weight_references.html'>weight_references</a
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-09-07 18:04  
+             on 2021-09-28 07:25  
             
           </p>
         </div>

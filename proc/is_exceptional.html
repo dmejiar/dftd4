@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>wrap_back &ndash; DFT-D4</title>
+    <title>is_exceptional &ndash; DFT-D4</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -117,8 +117,8 @@
     
   
   <div class="row">
-    <h1>wrap_back
-      <small>Subroutine</small>
+    <h1>is_exceptional
+      <small>Function</small>
     
     </h1>
     
@@ -136,24 +136,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.1% of total for procedures.">3 statements</a>
+    title=" 0.2% of total for procedures.">5 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/compat.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/model.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/compat.f90.html'>compat.f90</a></li>
+     <li><a href='../sourcefile/model.f90.html'>model.f90</a></li>
     
-     <li><a href='../module/dftd4_compat.html'>dftd4_compat</a></li>
+     <li><a href='../module/dftd4_model.html'>dftd4_model</a></li>
     
   
-     <li class="active">wrap_back</li>
+     <li class="active">is_exceptional</li>
   </ol>
 </div>
 </div>
@@ -197,7 +197,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/wrap_back.html#src">wrap_back</a>
+    <a class="list-group-item" href="../proc/is_exceptional.html#src">is_exceptional</a>
   </div>
 </div>
 
@@ -209,7 +209,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private subroutine wrap_back(self)
+private elemental function is_exceptional(val)
     
     
    
@@ -218,6 +218,8 @@ private subroutine wrap_back(self)
   
 
 
+    
+    <p>Check whether we are dealing with an exceptional value, NaN or Inf</p>
     
 
     <h3>Arguments</h3>
@@ -238,18 +240,27 @@ private subroutine wrap_back(self)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~9"></span>class(<a href='../type/molecule.html'>molecule</a>),</td>
-  <td>intent(inout)</td>
+  <td><span class="anchor" id="variable-val"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td></td>
+  <td><strong>val</strong></td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
+    
+    
+    
+    
+    
+    
+    
+   <h3>Return Value <small><span class="anchor" id="variable-is_exceptional"></span>logical
+  </small></h3>
     
     
     
@@ -285,7 +296,7 @@ private subroutine wrap_back(self)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/wrap_back.html#src">wrap_back</a>
+    <a class="list-group-item" href="../proc/is_exceptional.html#src">is_exceptional</a>
   </div>
 </div>
 
@@ -314,9 +325,11 @@ private subroutine wrap_back(self)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">wrap_back</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
-<span class="k">end subroutine </span><span class="n">wrap_back</span>
+    <div class="highlight"><pre><span></span><span class="k">elemental function </span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
+   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">is_exceptional</span>
+   <span class="n">is_exceptional</span> <span class="o">=</span> <span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">huge</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="k">end function </span><span class="n">is_exceptional</span>
 </pre></div>
 
     </section>

@@ -197,7 +197,7 @@ All Procedures &ndash; DFT-D4
 			   <tr><td><a href='../proc/get_atm_dispersion_energy.html'>get_atm_dispersion_energy</a></td><td><a href='../module/dftd4_damping_atm.html'>dftd4_damping_atm</a></td><td>Subroutine</td><td><p>Evaluation of the dispersion energy expression</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_atomic_c6.html'>get_atomic_c6</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Subroutine</td><td><p>Calculate atomic dispersion coefficients and their derivatives w.r.t.
- the coordination numbers and atomic partial charges.</p></td></tr>
+the coordination numbers and atomic partial charges.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_charges.html'>get_charges</a></td><td><a href='../module/dftd4_charge.html'>dftd4_charge</a></td><td>Subroutine</td><td><p>Obtain charges from electronegativity equilibration model</p></td></tr>
 			 
@@ -242,7 +242,7 @@ All Procedures &ndash; DFT-D4
 			   <tr><td><a href='../proc/get_error_api.html'>get_error_api</a></td><td><a href='../module/dftd4_api.html'>dftd4_api</a></td><td>Subroutine</td><td><p>Get error message from error handle</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_functional_id.html'>get_functional_id</a></td><td><a href='../module/dftd4_param.html'>dftd4_param</a></td><td>Function</td><td><p>Get the unique identifier for most functionals, returns none if
- the functional was not known at the time I implemented this mapping</p></td></tr>
+the functional was not known at the time I implemented this mapping</p></td></tr>
 			 
 			   <tr><td><a href='../interface/get_hardness.html'>get_hardness</a></td><td><a href='../module/dftd4_data_hardness.html'>dftd4_data_hardness</a></td><td>Interface</td><td></td></tr>
 			 
@@ -271,7 +271,7 @@ All Procedures &ndash; DFT-D4
 			   <tr><td><a href='../proc/get_pairwise_dispersion_api.html'>get_pairwise_dispersion_api</a></td><td><a href='../module/dftd4_api.html'>dftd4_api</a></td><td>Subroutine</td><td><p>Calculate pairwise representation of dispersion energy</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_polarizibilities.html'>get_polarizibilities</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Subroutine</td><td><p>Calculate atomic polarizibilities and their derivatives w.r.t.
- the coordination numbers and atomic partial charges.</p></td></tr>
+the coordination numbers and atomic partial charges.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_properties.html'>get_properties</a></td><td><a href='../module/dftd4_disp.html'>dftd4_disp</a></td><td>Subroutine</td><td><p>Wrapper to handle the evaluation of properties related to this dispersion model</p></td></tr>
 			 
@@ -286,12 +286,14 @@ All Procedures &ndash; DFT-D4
 			   <tr><td><a href='../proc/get_rational_damping.html'>get_rational_damping</a></td><td><a href='../module/dftd4_param.html'>dftd4_param</a></td><td>Subroutine</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/get_translations.html'>get_translations</a></td><td><a href='../module/dftd4_cutoff.html'>dftd4_cutoff</a></td><td>Subroutine</td><td><p>Generate a supercell based on a realspace cutoff, this subroutine
- doesn&rsquo;t know anything about the convergence behaviour of the
- associated property.</p></td></tr>
+doesn&rsquo;t know anything about the convergence behaviour of the
+associated property.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_version_api.html'>get_version_api</a></td><td><a href='../module/dftd4_api.html'>dftd4_api</a></td><td>Function</td><td><p>Obtain library version as major * 10000 + minor + 100 + patch</p></td></tr>
 			 
 			   <tr><td><a href='../proc/getline.html'>getline</a></td><td><a href='../module/dftd4_output.html'>dftd4_output</a></td><td>Subroutine</td><td><p>reads a line from unit into an allocatable character</p></td></tr>
+			 
+			   <tr><td><a href='../proc/is_exceptional.html'>is_exceptional</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Function</td><td><p>Check whether we are dealing with an exceptional value, NaN or Inf</p></td></tr>
 			 
 			   <tr><td><a href='../proc/json_results.html'>json_results</a></td><td><a href='../module/dftd4_output.html'>dftd4_output</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -370,7 +372,7 @@ All Procedures &ndash; DFT-D4
 			   <tr><td><a href='../proc/weight_cn.html'>weight_cn</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/weight_references.html'>weight_references</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Subroutine</td><td><p>Calculate the weights of the reference system and the derivatives w.r.t.
- coordination number for later use.</p></td></tr>
+coordination number for later use.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/wrap_back.html'>wrap_back</a></td><td><a href='../module/dftd4_compat.html'>dftd4_compat</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -378,9 +380,9 @@ All Procedures &ndash; DFT-D4
 			 
 			   <tr><td><a href='../proc/write_json_array.html'>write_json_array</a></td><td><a href='../module/dftd4_output.html'>dftd4_output</a></td><td>Subroutine</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/zeta.html'>zeta</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Function</td><td><p>charge scaling function</p></td></tr>
+			   <tr><td><a href='../proc/zeta.html'>zeta</a></td><td><a href='../module/dftd4_reference.html'>dftd4_reference</a></td><td>Function</td><td><p>charge scaling function</p></td></tr>
 			 
-			   <tr><td><a href='../proc/zeta~2.html'>zeta</a></td><td><a href='../module/dftd4_reference.html'>dftd4_reference</a></td><td>Function</td><td><p>charge scaling function</p></td></tr>
+			   <tr><td><a href='../proc/zeta~2.html'>zeta</a></td><td><a href='../module/dftd4_model.html'>dftd4_model</a></td><td>Function</td><td><p>charge scaling function</p></td></tr>
 			 
 			 </tbody></table>
              
@@ -399,7 +401,7 @@ All Procedures &ndash; DFT-D4
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-09-07 18:04  
+             on 2021-09-28 07:25  
             
           </p>
         </div>
