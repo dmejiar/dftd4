@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 6.3% of total for procedures.">194 statements</a>
+    title=" 6.5% of total for procedures.">200 statements</a>
      </li> 
      
      
@@ -253,7 +253,7 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-param~2"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td><span class="anchor" id="variable-param~5"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -268,7 +268,7 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-s9~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-s9~5"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -500,6 +500,10 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.59493760_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.71422359_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">6.35314182_wp</span> <span class="p">)</span>
       <span class="c">!  Fitset: MD= 0.08395 MAD= 0.24888 RMSD= 0.34879</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mn12sx</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211021)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.85964873_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.62662681_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.62088906_wp</span> <span class="p">)</span>
+      <span class="c">!  Fitset: MD= 0.16131 MAD= 0.34142 RMSD= 0.47113</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_mpw1b95</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190107)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.50093024_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.41585097_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.99154869_wp</span> <span class="p">)</span>
@@ -556,6 +560,14 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.95948085_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.38574991_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.80688534_wp</span> <span class="p">)</span>
       <span class="c">!  Fitset: MD= -0.20544 MAD= 0.33635 RMSD= 0.51168</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pbesol</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211021)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.71885698_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.47901421_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.96771589_wp</span> <span class="p">)</span>
+      <span class="c">!  Fitset: MD= -0.28899 MAD= 0.52215 RMSD= 0.93584</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_am05</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211021)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.71885838_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.47901431_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.96771581_wp</span> <span class="p">)</span>
+      <span class="c">!  Fitset: MD= -0.28899 MAD= 0.52215 RMSD= 0.93584</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_pw1pw</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span> <span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW190103)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0000_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.96850170_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.42427511_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.02060636_wp</span> <span class="p">)</span>
@@ -739,7 +751,7 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-09-28 07:25  
+             on 2021-10-21 14:34  
             
           </p>
         </div>
