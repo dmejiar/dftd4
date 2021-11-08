@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 6.5% of total for procedures.">200 statements</a>
+    title=" 6.8% of total for procedures.">210 statements</a>
      </li> 
      
      
@@ -713,6 +713,21 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
    <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_pbc</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
          <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.1667394_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.5646391_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.9576353_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hse03</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211107)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.19812280_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.38662939_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.22925796_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hse06</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211107)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.19528249_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.38663183_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.19133469_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hse12</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211107)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.23500792_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.39226921_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.22036266_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hse12s</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211107)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.23767762_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.39989137_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.34809245_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hsesol</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW211107)</span>
+         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.82207807_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.45646268_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.59662251_wp</span><span class="p">)</span>
    <span class="k">end select</span>
 
 <span class="k">contains</span>
@@ -751,7 +766,7 @@ private subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-06 11:49  
+             on 2021-11-08 09:28  
             
           </p>
         </div>
