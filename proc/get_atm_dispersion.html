@@ -240,7 +240,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~23"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~29"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -255,7 +255,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~14"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~20"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -270,7 +270,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~15"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -345,7 +345,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-r4r2~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-r4r2~10"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -360,7 +360,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~14"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -375,7 +375,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dcn~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dcn~6"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -390,7 +390,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dq~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dq~6"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -405,7 +405,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~11"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~17"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -420,7 +420,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedcn~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~5"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -435,7 +435,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedq~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedq~5"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -450,7 +450,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~11"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -465,7 +465,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~10"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -541,72 +541,72 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_atm_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">s9</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">alp</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="n">dc6dq</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">dEdq</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_atm_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="p">,</span><span class="w"> </span><span class="n">s9</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">alp</span><span class="p">,</span><span class="w"> </span><span class="n">r4r2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">c6</span><span class="p">,</span><span class="w"> </span><span class="n">dc6dcn</span><span class="p">,</span><span class="w"> </span><span class="n">dc6dq</span><span class="p">,</span><span class="w"> </span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">,</span><span class="w"> </span><span class="n">dEdq</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
 
-   <span class="c">!&gt; Molecular structure data</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<span class="w">   </span><span class="c">!&gt; Molecular structure data</span>
+<span class="w">   </span><span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol</span><span class="w"></span>
 
-   <span class="c">!&gt; Lattice points</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Lattice points</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trans</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Real space cutoff</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+<span class="w">   </span><span class="c">!&gt; Real space cutoff</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cutoff</span><span class="w"></span>
 
-   <span class="c">!&gt; Scaling for dispersion coefficients</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s9</span>
+<span class="w">   </span><span class="c">!&gt; Scaling for dispersion coefficients</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s9</span><span class="w"></span>
 
-   <span class="c">!&gt; Scaling parameter for critical radius</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a1</span>
+<span class="w">   </span><span class="c">!&gt; Scaling parameter for critical radius</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a1</span><span class="w"></span>
 
-   <span class="c">!&gt; Offset parameter for critical radius</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a2</span>
+<span class="w">   </span><span class="c">!&gt; Offset parameter for critical radius</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a2</span><span class="w"></span>
 
-   <span class="c">!&gt; Exponent of zero damping function</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alp</span>
+<span class="w">   </span><span class="c">!&gt; Exponent of zero damping function</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">alp</span><span class="w"></span>
 
-   <span class="c">!&gt; Expectation values for r4 over r2 operator</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Expectation values for r4 over r2 operator</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r4r2</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; C6 coefficients for all atom pairs.</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c6</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dc6dcn</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the C6 w.r.t. the partial charges</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dq</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the C6 w.r.t. the partial charges</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dc6dq</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Dispersion energy</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Dispersion energy</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">energy</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the energy w.r.t. the partial charges</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdq</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the energy w.r.t. the partial charges</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dEdq</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Dispersion gradient</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Dispersion gradient</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Dispersion virial</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Dispersion virial</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sigma</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">grad</span>
+<span class="w">   </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">grad</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s9</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">))</span> <span class="k">return</span>
-<span class="k">   </span><span class="n">grad</span> <span class="o">=</span> <span class="nb">present</span><span class="p">(</span><span class="n">dc6dcn</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">dEdcn</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">dc6dq</span><span class="p">)</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">dEdq</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">present</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s9</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">))</span><span class="w"> </span><span class="k">return</span>
+<span class="k">   </span><span class="n">grad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">dc6dcn</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">dEdcn</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">dc6dq</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">dEdq</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">get_atm_dispersion_derivs</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">s9</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">alp</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="p">&amp;</span>
-         <span class="p">&amp;</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="n">dc6dq</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">dEdq</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-   <span class="k">else</span>
-<span class="k">      call </span><span class="n">get_atm_dispersion_energy</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">s9</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">alp</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="p">&amp;</span>
-         <span class="p">&amp;</span> <span class="n">c6</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
-   <span class="k">end if</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">grad</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      call </span><span class="n">get_atm_dispersion_derivs</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="p">,</span><span class="w"> </span><span class="n">s9</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">alp</span><span class="p">,</span><span class="w"> </span><span class="n">r4r2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">c6</span><span class="p">,</span><span class="w"> </span><span class="n">dc6dcn</span><span class="p">,</span><span class="w"> </span><span class="n">dc6dq</span><span class="p">,</span><span class="w"> </span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">,</span><span class="w"> </span><span class="n">dEdq</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      call </span><span class="n">get_atm_dispersion_energy</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="p">,</span><span class="w"> </span><span class="n">s9</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">alp</span><span class="p">,</span><span class="w"> </span><span class="n">r4r2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">c6</span><span class="p">,</span><span class="w"> </span><span class="n">energy</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end if</span>
 
-<span class="k">end subroutine </span><span class="n">get_atm_dispersion</span>
+<span class="k">end subroutine </span><span class="n">get_atm_dispersion</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -622,14 +622,14 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, a1, a2, alp, r4r2, 
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-26 08:17  
+             on 2022-01-14 12:18  
             
           </p>
         </div>

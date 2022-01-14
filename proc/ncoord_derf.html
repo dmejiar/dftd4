@@ -238,7 +238,7 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~21"></span>type(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~10"></span>type(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -253,7 +253,7 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~12"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~10"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -268,7 +268,7 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~4"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -313,7 +313,7 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
   
 <tr>
   
-  <td><span class="anchor" id="variable-cn~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cn~8"></span>real(kind=wp),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -419,82 +419,82 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ncoord_derf</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rcov</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">dcndr</span><span class="p">,</span> <span class="n">dcndL</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">ncoord_derf</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="p">,</span><span class="w"> </span><span class="n">rcov</span><span class="p">,</span><span class="w"> </span><span class="n">en</span><span class="p">,</span><span class="w"> </span><span class="n">cn</span><span class="p">,</span><span class="w"> </span><span class="n">dcndr</span><span class="p">,</span><span class="w"> </span><span class="n">dcndL</span><span class="p">)</span><span class="w"></span>
 
-   <span class="c">!&gt; Molecular structure data</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<span class="w">   </span><span class="c">!&gt; Molecular structure data</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol</span><span class="w"></span>
 
-   <span class="c">!&gt; Lattice points</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Lattice points</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trans</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Real space cutoff</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+<span class="w">   </span><span class="c">!&gt; Real space cutoff</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cutoff</span><span class="w"></span>
 
-   <span class="c">!&gt; Covalent radius</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rcov</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Covalent radius</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rcov</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Electronegativity</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">en</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Electronegativity</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">en</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Error function coordination number.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:)</span>
+<span class="w">   </span><span class="c">!&gt; Error function coordination number.</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cn</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the CN with respect to the Cartesian coordinates.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the CN with respect to the Cartesian coordinates.</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="c">!&gt; Derivative of the CN with respect to strain deformations.</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
+<span class="w">   </span><span class="c">!&gt; Derivative of the CN with respect to strain deformations.</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">itr</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">rij</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">countf</span><span class="p">,</span> <span class="n">countd</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">cutoff2</span><span class="p">,</span> <span class="n">den</span>
+<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">izp</span><span class="p">,</span><span class="w"> </span><span class="n">jzp</span><span class="p">,</span><span class="w"> </span><span class="n">itr</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">,</span><span class="w"> </span><span class="n">rij</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">countf</span><span class="p">,</span><span class="w"> </span><span class="n">countd</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">cutoff2</span><span class="p">,</span><span class="w"> </span><span class="n">den</span><span class="w"></span>
 
-   <span class="n">cn</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-   <span class="n">dcndr</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-   <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-   <span class="n">cutoff2</span> <span class="o">=</span> <span class="n">cutoff</span><span class="o">**</span><span class="mi">2</span>
+<span class="w">   </span><span class="n">cn</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
+<span class="w">   </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
+<span class="w">   </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
+<span class="w">   </span><span class="n">cutoff2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cutoff</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
 
-   <span class="c">!$omp parallel do default(none) reduction(+:cn, dcndr, dcndL) &amp;</span>
-   <span class="c">!$omp shared(mol, trans, cutoff2, rcov, en) &amp;</span>
-   <span class="c">!$omp private(jat, itr, izp, jzp, r2, rij, r1, rc, countf, countd, sigma, den)</span>
-   <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
-      <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
-      <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
-         <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
-         <span class="n">den</span> <span class="o">=</span> <span class="n">k4</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">en</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">-</span><span class="n">en</span><span class="p">(</span><span class="n">jzp</span><span class="p">))</span> <span class="o">+</span> <span class="n">k5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k6</span><span class="p">)</span>
+<span class="w">   </span><span class="c">!$omp parallel do default(none) reduction(+:cn, dcndr, dcndL) &amp;</span>
+<span class="w">   </span><span class="c">!$omp shared(mol, trans, cutoff2, rcov, en) &amp;</span>
+<span class="w">   </span><span class="c">!$omp private(jat, itr, izp, jzp, r2, rij, r1, rc, countf, countd, sigma, den)</span>
+<span class="w">   </span><span class="k">do </span><span class="n">iat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="w"></span>
+<span class="w">      </span><span class="n">izp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">do </span><span class="n">jat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="w"></span>
+<span class="w">         </span><span class="n">jzp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="n">den</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k4</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">en</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">-</span><span class="n">en</span><span class="p">(</span><span class="n">jzp</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k6</span><span class="p">)</span><span class="w"></span>
 
-         <span class="k">do </span><span class="n">itr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">rij</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span><span class="p">(:,</span> <span class="n">itr</span><span class="p">))</span>
-            <span class="n">r2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rij</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">r2</span> <span class="o">&gt;</span> <span class="n">cutoff2</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">r2</span> <span class="o">&lt;</span> <span class="mf">1.0e-12_wp</span><span class="p">)</span> <span class="k">cycle</span>
-<span class="k">            </span><span class="n">r1</span> <span class="o">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+<span class="w">         </span><span class="k">do </span><span class="n">itr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">rij</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">trans</span><span class="p">(:,</span><span class="w"> </span><span class="n">itr</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">rij</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cutoff2</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0e-12_wp</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span>
+<span class="k">            </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span><span class="w"></span>
 
-            <span class="n">rc</span> <span class="o">=</span> <span class="n">rcov</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span> <span class="o">+</span> <span class="n">rcov</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
+<span class="w">            </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcov</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rcov</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span><span class="w"></span>
 
-            <span class="n">countf</span> <span class="o">=</span> <span class="n">den</span><span class="o">*</span><span class="n">erf_count</span><span class="p">(</span><span class="n">kcn</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
-            <span class="n">countd</span> <span class="o">=</span> <span class="n">den</span><span class="o">*</span><span class="n">derf_count</span><span class="p">(</span><span class="n">kcn</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span> <span class="o">*</span> <span class="n">rij</span><span class="o">/</span><span class="n">r1</span>
+<span class="w">            </span><span class="n">countf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">den</span><span class="o">*</span><span class="n">erf_count</span><span class="p">(</span><span class="n">kcn</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">countd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">den</span><span class="o">*</span><span class="n">derf_count</span><span class="p">(</span><span class="n">kcn</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rij</span><span class="o">/</span><span class="n">r1</span><span class="w"></span>
 
-            <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">countf</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">cn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">cn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">countf</span>
-            <span class="k">end if</span>
+<span class="w">            </span><span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">countf</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">               </span><span class="n">cn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">countf</span><span class="w"></span>
+<span class="w">            </span><span class="k">end if</span>
 
-<span class="k">            </span><span class="n">dcndr</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">countd</span>
-            <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">countd</span>
-            <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">countd</span>
-            <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">countd</span>
+<span class="k">            </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">countd</span><span class="w"></span>
+<span class="w">            </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">countd</span><span class="w"></span>
+<span class="w">            </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">countd</span><span class="w"></span>
+<span class="w">            </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndr</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">countd</span><span class="w"></span>
 
-            <span class="n">sigma</span> <span class="o">=</span> <span class="nb">spread</span><span class="p">(</span><span class="n">countd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="nb">spread</span><span class="p">(</span><span class="n">rij</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="w">            </span><span class="n">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">spread</span><span class="p">(</span><span class="n">countd</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">spread</span><span class="p">(</span><span class="n">rij</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
 
-            <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">sigma</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">sigma</span>
-            <span class="k">end if</span>
+<span class="w">            </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sigma</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">               </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcndL</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sigma</span><span class="w"></span>
+<span class="w">            </span><span class="k">end if</span>
 
 <span class="k">         end do</span>
 <span class="k">      end do</span>
 <span class="k">   end do</span>
 
-<span class="k">end subroutine </span><span class="n">ncoord_derf</span>
+<span class="k">end subroutine </span><span class="n">ncoord_derf</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -510,14 +510,14 @@ private subroutine ncoord_derf(mol, trans, cutoff, rcov, en, cn, dcndr, dcndL)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-26 08:17  
+             on 2022-01-14 12:18  
             
           </p>
         </div>

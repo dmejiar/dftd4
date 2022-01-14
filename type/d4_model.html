@@ -185,7 +185,7 @@
       
       <a class="list-group-item" href="../type/d4_model.html#variable-c6">c6</a>
       
-      <a class="list-group-item" href="../type/d4_model.html#variable-cn~2">cn</a>
+      <a class="list-group-item" href="../type/d4_model.html#variable-cn">cn</a>
       
       <a class="list-group-item" href="../type/d4_model.html#variable-en">en</a>
       
@@ -285,7 +285,7 @@
       
       <a class="list-group-item" href="../type/d4_model.html#variable-c6">c6</a>
       
-      <a class="list-group-item" href="../type/d4_model.html#variable-cn~2">cn</a>
+      <a class="list-group-item" href="../type/d4_model.html#variable-cn">cn</a>
       
       <a class="list-group-item" href="../type/d4_model.html#variable-en">en</a>
       
@@ -407,7 +407,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-cn~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cn"></span>real(kind=wp),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
@@ -1130,62 +1130,62 @@ coordination number for later use.</p>
     
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
-    <div class="highlight"><pre><span></span>   <span class="k">type</span> <span class="kd">::</span> <span class="n">d4_model</span>
+    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">d4_model</span><span class="w"></span>
 
-      <span class="c">!&gt; Charge scaling height</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ga</span>
+<span class="w">      </span><span class="c">!&gt; Charge scaling height</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ga</span><span class="w"></span>
 
-      <span class="c">!&gt; Charge scaling steepness</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gc</span>
+<span class="w">      </span><span class="c">!&gt; Charge scaling steepness</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gc</span><span class="w"></span>
 
-      <span class="c">!&gt; Weighting factor for CN interpolation</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">wf</span>
+<span class="w">      </span><span class="c">!&gt; Weighting factor for CN interpolation</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wf</span><span class="w"></span>
 
-      <span class="c">!&gt; Effective nuclear charges</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">zeff</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Effective nuclear charges</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zeff</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Chemical hardness</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">eta</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Chemical hardness</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">eta</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Electronegativity</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">en</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Electronegativity</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">en</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Covalent radii for coordination number</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rcov</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Covalent radii for coordination number</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rcov</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Expectation values for C8 extrapolation</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Expectation values for C8 extrapolation</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r4r2</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of reference systems</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">ref</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Number of reference systems</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ref</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of Gaussian weights for each reference</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">ngw</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Number of Gaussian weights for each reference</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ngw</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Reference coordination numbers</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Reference coordination numbers</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cn</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Reference partial charges</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">q</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Reference partial charges</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Reference dynamic polarizibilities</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">aiw</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Reference dynamic polarizibilities</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">aiw</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Reference C6 coefficients</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Reference C6 coefficients</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c6</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-   <span class="k">contains</span>
+<span class="w">   </span><span class="k">contains</span><span class="w"></span>
 
-      <span class="c">!&gt; Generate weights for all reference systems</span>
-      <span class="k">procedure</span> <span class="kd">::</span> <span class="n">weight_references</span>
+<span class="w">      </span><span class="c">!&gt; Generate weights for all reference systems</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">weight_references</span><span class="w"></span>
 
-      <span class="c">!&gt; Evaluate C6 coefficient</span>
-      <span class="k">procedure</span> <span class="kd">::</span> <span class="n">get_atomic_c6</span>
+<span class="w">      </span><span class="c">!&gt; Evaluate C6 coefficient</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_atomic_c6</span><span class="w"></span>
 
-      <span class="c">!&gt; Evaluate atomic polarizibilities</span>
-      <span class="k">procedure</span> <span class="kd">::</span> <span class="n">get_polarizibilities</span>
+<span class="w">      </span><span class="c">!&gt; Evaluate atomic polarizibilities</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_polarizibilities</span><span class="w"></span>
 
-   <span class="k">end type </span><span class="n">d4_model</span>
+<span class="w">   </span><span class="k">end type </span><span class="n">d4_model</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -1200,14 +1200,14 @@ coordination number for later use.</p>
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-26 08:17  
+             on 2022-01-14 12:18  
             
           </p>
         </div>

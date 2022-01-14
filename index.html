@@ -174,8 +174,8 @@ If the <em>conda-forge</em> channel is not yet enabled, add it to your channels 
 <p><a href="https://spack.readthedocs.io/en/latest/package_list.html#dftd4"><img alt="Spack" src="https://img.shields.io/spack/v/dftd4"></a></p>
 <p>This project is available with <a href="https://spack.io">spack</a> in its develop version.
 You can install and load <code>dftd4</code> with</p>
-<div class="codehilite"><pre><span></span><code><span class="n">spack</span> <span class="n">install</span> <span class="n">dftd4</span>
-<span class="n">spack</span> <span class="nb">load</span> <span class="n">dftd4</span>
+<div class="codehilite"><pre><span></span><code><span class="n">spack</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">dftd4</span><span class="w"></span>
+<span class="n">spack</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">dftd4</span><span class="w"></span>
 </code></pre></div>
 
 <p>The Python API can be enabled by adding <code>+python</code> to the command.</p>
@@ -249,8 +249,8 @@ Invoke fpm in the project root with</p>
 </code></pre></div>
 
 <p>To use <code>dftd4</code> for testing include it as dependency in your package manifest</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span>
-<span class="n">dftd4</span><span class="p">.</span><span class="n">git</span> <span class="o">=</span> <span class="s">&quot;https://github.com/dftd4/dftd4&quot;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span><span class="w"></span>
+<span class="n">dftd4</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://github.com/dftd4/dftd4&quot;</span><span class="w"></span>
 </code></pre></div>
 
 <p>Note that the fpm build does not support exporting the C-API, it only provides access to the standalone binary.</p>
@@ -278,9 +278,9 @@ To calculate the dispersion correction for PBE0-D4 run:</p>
 <p>DFT-D4 is parametrized for plenty of density functionals.
 The available parameters are listed in the <a href="https://github.com/dftd4/dftd4/blob/main/assets/parameters.toml">parameters.toml file</a>.</p>
 <p>You can add new functionals using to the TOML file by adding a new subtable</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[parameter.name]</span>
-<span class="n">reference</span><span class="p">.</span><span class="n">doi</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;&lt;functional reference&gt;&quot;</span><span class="p">]</span>
-<span class="n">d4</span><span class="p">.</span><span class="n">bj-eeq-atm</span> <span class="o">=</span> <span class="p">{</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">doi</span><span class="o">=</span><span class="s">&quot;&lt;parameter reference&gt;&quot;</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="k">[parameter.name]</span><span class="w"></span>
+<span class="n">reference</span><span class="p">.</span><span class="n">doi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;&lt;functional reference&gt;&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="n">d4</span><span class="p">.</span><span class="n">bj-eeq-atm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="n">doi</span><span class="o">=</span><span class="s">&quot;&lt;parameter reference&gt;&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 <p>Those parameters are currently only used as reference and not yet usable in the library or executable.</p>
@@ -541,14 +541,14 @@ additional terms or conditions.</p>
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-26 08:17  
+             on 2022-01-14 12:18  
             
           </p>
         </div>

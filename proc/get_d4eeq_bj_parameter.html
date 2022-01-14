@@ -253,7 +253,7 @@ private subroutine get_d4eeq_bj_parameter(dfnum, param, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-param~4"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td><span class="anchor" id="variable-param"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -268,7 +268,7 @@ private subroutine get_d4eeq_bj_parameter(dfnum, param, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-s9~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-s9~3"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -344,42 +344,42 @@ private subroutine get_d4eeq_bj_parameter(dfnum, param, s9)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_d4eeq_bj_parameter</span><span class="p">(</span><span class="n">dfnum</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
-   <span class="kt">integer</span><span class="p">(</span><span class="n">df_enum</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dfnum</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">param</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">s9</span>
-   <span class="k">select case</span><span class="p">(</span><span class="n">dfnum</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_3ob</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
-         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.4727337_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.5467502_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.4955068_wp</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_matsci</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
-         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.7711819_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.4681712_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.2918629_wp</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_mio</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
-         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.1948145_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.6074567_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.9336133_wp</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_ob2</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
-         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.7611320_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.6037249_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">5.3900004_wp</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">p_dftb_pbc</span><span class="p">)</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd_param</span><span class="p">(</span> <span class="p">&amp;</span> <span class="c">! (SAW191202)</span>
-         <span class="p">&amp;</span>  <span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.7303734_wp</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="mf">0.5546548_wp</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="mf">4.7973454_wp</span><span class="p">)</span>
-   <span class="k">end select</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_d4eeq_bj_parameter</span><span class="p">(</span><span class="n">dfnum</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">,</span><span class="w"> </span><span class="n">s9</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">(</span><span class="n">df_enum</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dfnum</span><span class="w"></span>
+<span class="w">   </span><span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">param</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s9</span><span class="w"></span>
+<span class="w">   </span><span class="k">select case</span><span class="p">(</span><span class="n">dfnum</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_dftb_3ob</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd_param</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="c">! (SAW191202)</span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w">  </span><span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">0.4727337_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.5467502_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">4.4955068_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_dftb_matsci</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd_param</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="c">! (SAW191202)</span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w">  </span><span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">2.7711819_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.4681712_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">5.2918629_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_dftb_mio</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd_param</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="c">! (SAW191202)</span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w">  </span><span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.1948145_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.6074567_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">4.9336133_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_dftb_ob2</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd_param</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="c">! (SAW191202)</span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w">  </span><span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">2.7611320_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.6037249_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">5.3900004_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_dftb_pbc</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd_param</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="c">! (SAW191202)</span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w">  </span><span class="n">s6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.7303734_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="mf">0.5546548_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">4.7973454_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end select</span>
 
 <span class="k">contains</span>
 
-<span class="k">   pure function </span><span class="n">dftd_param</span><span class="p">(</span><span class="n">s6</span><span class="p">,</span> <span class="n">s8</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">alp</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">s8</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">s6</span><span class="p">,</span> <span class="n">alp</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">)</span> <span class="kd">::</span> <span class="n">param</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">rational_damping_param</span><span class="p">(&amp;</span>
-         <span class="p">&amp;</span> <span class="n">s6</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">s6</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">,</span> <span class="nb">present</span><span class="p">(</span><span class="n">s6</span><span class="p">)),</span> <span class="p">&amp;</span>
-         <span class="p">&amp;</span> <span class="n">s8</span><span class="o">=</span><span class="n">s8</span><span class="p">,</span> <span class="n">a1</span><span class="o">=</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="o">=</span><span class="n">a2</span><span class="p">,</span> <span class="p">&amp;</span>
-         <span class="p">&amp;</span> <span class="n">s9</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">s9</span><span class="p">,</span> <span class="mf">0.0_wp</span><span class="p">,</span> <span class="nb">present</span><span class="p">(</span><span class="n">s9</span><span class="p">)),</span> <span class="p">&amp;</span>
-         <span class="p">&amp;</span> <span class="n">alp</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">alp</span><span class="p">,</span> <span class="mi">1</span><span class="mf">6.0_wp</span><span class="p">,</span> <span class="nb">present</span><span class="p">(</span><span class="n">alp</span><span class="p">)))</span>
-   <span class="k">end function </span><span class="n">dftd_param</span>
+<span class="k">   pure function </span><span class="n">dftd_param</span><span class="p">(</span><span class="n">s6</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">alp</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s8</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="w"></span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s6</span><span class="p">,</span><span class="w"> </span><span class="n">alp</span><span class="w"></span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">param</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rational_damping_param</span><span class="p">(&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s6</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">s6</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">s6</span><span class="p">)),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="n">s8</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s9</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">s9</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">s9</span><span class="p">)),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="n">alp</span><span class="o">=</span><span class="nb">merge</span><span class="p">(</span><span class="n">alp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">6.0_wp</span><span class="p">,</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">alp</span><span class="p">)))</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function </span><span class="n">dftd_param</span><span class="w"></span>
 
-<span class="k">end subroutine </span><span class="n">get_d4eeq_bj_parameter</span>
+<span class="k">end subroutine </span><span class="n">get_d4eeq_bj_parameter</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -395,14 +395,14 @@ private subroutine get_d4eeq_bj_parameter(dfnum, param, s9)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-26 08:17  
+             on 2022-01-14 12:18  
             
           </p>
         </div>
