@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
     <meta name="description" content="Documentation for DFT-D4">
-   
     <meta name="author" content="Grimme group Bonn" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,58 +43,27 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -108,51 +72,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>d4_calculation
       <small>Subroutine</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 0.6% of total for procedures.">20 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/compat.f90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/compat.f90.html'>compat.f90</a></li>
-    
      <li><a href='../module/dftd4_compat.html'>dftd4_compat</a></li>
-    
-  
      <li class="active">d4_calculation</li>
   </ol>
 </div>
@@ -168,266 +110,149 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/d4_calculation.html#src">d4_calculation</a>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-d4">d4</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-energy~4">energy</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-gradient~3">gradient</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-mol~8">mol</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-param~4">param</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-sigma~2">sigma</a>
+    </div>
   </div>
 </div>
-
-
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine d4_calculation(io, env, options, mol_, param_, res)
+    <h2>public subroutine d4_calculation(io, env, options, mol_, param_, res)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-io"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>io</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-env"></span>type(<a href='../type/mctc_logger.html'>mctc_logger</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>env</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-options"></span>type(<a href='../type/dftd_options.html'>dftd_options</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>options</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-mol_"></span>type(<a href='../type/molecule.html'>molecule</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>mol_</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-param_"></span>type(<a href='../type/dftd_parameter.html'>dftd_parameter</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>param_</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-res"></span>type(<a href='../type/dftd_results.html'>dftd_results</a>),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(out)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>res</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../proc/d4_calculation.html#src">d4_calculation</a>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-d4">d4</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-energy~4">energy</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-gradient~3">gradient</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-mol~8">mol</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-param~4">param</a>
+      <a class="list-group-item" href="../proc/d4_calculation.html#variable-sigma~2">sigma</a>
+    </div>
   </div>
 </div>
-
-
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
 
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-
-    
-    
-    
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">d4_calculation</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="k">options</span><span class="p">,</span><span class="w"> </span><span class="n">mol_</span><span class="p">,</span><span class="w"> </span><span class="n">param_</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">mctc_logger</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">env</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">dftd_options</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">options</span>
-<span class="k">   type</span><span class="p">(</span><span class="n">molecule</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol_</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">dftd_parameter</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">param_</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">dftd_results</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">res</span><span class="w"></span>
-
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">d4_model</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">d4</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">param</span><span class="w"></span>
-<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="n">sigma</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
-
-<span class="w">   </span><span class="k">call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">mol_</span><span class="p">%</span><span class="n">at</span><span class="p">,</span><span class="w"> </span><span class="n">mol_</span><span class="p">%</span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="n">lattice</span><span class="o">=</span><span class="n">mol_</span><span class="p">%</span><span class="n">lattice</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">new_d4_model</span><span class="p">(</span><span class="n">d4</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">ga</span><span class="o">=</span><span class="k">options</span><span class="p">%</span><span class="n">g_a</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="o">=</span><span class="k">options</span><span class="p">%</span><span class="n">g_c</span><span class="p">,</span><span class="w"> </span><span class="n">wf</span><span class="o">=</span><span class="k">options</span><span class="p">%</span><span class="n">wf</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rational_damping_param</span><span class="p">(&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s6</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">s9</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">s9</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">a1</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">alp</span><span class="o">=</span><span class="n">param_</span><span class="p">%</span><span class="n">alp</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span><span class="w"> </span><span class="n">sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">get_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">d4</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">,</span><span class="w"> </span><span class="n">realspace_cutoff</span><span class="p">(),</span><span class="w"> </span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">%</span><span class="n">energy</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">%</span><span class="n">gradient</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="n">res</span><span class="p">%</span><span class="n">lattice_gradient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="nb">transpose</span><span class="p">(</span><span class="n">matinv_3x3</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">)))</span><span class="w"></span>
-
-<span class="k">end subroutine </span><span class="n">d4_calculation</span><span class="w"></span>
-</pre></div>
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-d4"></span>type(<a href='../type/d4_model.html'>d4_model</a>),</td>
+<td>private</td>  <td></td><td>::</td>
+  <td><strong>d4</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-energy~4"></span>real(kind=wp),</td>
+<td>private,</td>  <td>allocatable</td><td>::</td>
+  <td><strong>energy</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-gradient~3"></span>real(kind=wp),</td>
+<td>private,</td>  <td>allocatable</td><td>::</td>
+  <td><strong>gradient</strong>(:,:)</td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-mol~8"></span>type(structure_type),</td>
+<td>private</td>  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-param~4"></span>type(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
+<td>private</td>  <td></td><td>::</td>
+  <td><strong>param</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-sigma~2"></span>real(kind=wp),</td>
+<td>private,</td>  <td>allocatable</td><td>::</td>
+  <td><strong>sigma</strong>(:,:)</td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
 
     </section>
     <br>
     
     
+
+    
+    
+
+
+    
+    
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -435,15 +260,13 @@ public subroutine d4_calculation(io, env, options, mol_, param_, res)
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>DFT-D4 was developed by Grimme group Bonn<br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2022-01-23 10:20  
-            
-          </p>
+ on 2022-02-21 17:39            </p>
         </div>
       </div>
       <br>
@@ -470,14 +293,11 @@ public subroutine d4_calculation(io, env, options, mol_, param_, res)
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>
