@@ -66,3 +66,10 @@ option(
   value: false,
   description: 'Enable the compatibility layer for the dftd4 2.5.x API',
 )
+
+option(
+  'ilp64',
+  type: 'boolean',
+  value: false,
+  description: 'Enable ILP64 MKL interface',
+)

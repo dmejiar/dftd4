@@ -50,15 +50,27 @@ if lapack_vendor == 'auto'
   endif
 endif
 
+if get_option('ilp64')
+  add_project_arguments('-DWITH_ILP64', language: 'fortran')
+endif
+
 if lapack_vendor == 'mkl'
   mkl_dep = []
   if fc_id == 'intel'
-    mkl_dep += fc.find_library('mkl_intel_lp64')
+    if get_option('ilp64')
+      mkl_dep += fc.find_library('mkl_intel_ilp64')
+    else
+      mkl_dep += fc.find_library('mkl_intel_lp64')
+    endif
     if get_option('openmp')
       mkl_dep += fc.find_library('mkl_intel_thread')
     endif
   elif fc_id == 'gcc'
-    mkl_dep += fc.find_library('mkl_gf_lp64')
+    if get_option('ilp64')
+      mkl_dep += fc.find_library('mkl_gf_ilp64')
+    else
+      mkl_dep += fc.find_library('mkl_gf_lp64')
+    endif
     if get_option('openmp')
       mkl_dep += fc.find_library('mkl_gnu_thread')
     endif
