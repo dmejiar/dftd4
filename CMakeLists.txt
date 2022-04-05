@@ -34,6 +34,7 @@ if(NOT TARGET "OpenMP::OpenMP_Fortran" AND WITH_OpenMP)
 endif()
 
 if(WITH_ILP64)
+  message(STATUS "Using ILP64 interface")
   add_definitions(-DWITH_ILP64)
   if(ENABLE_AUTO_LAPACK)
     set(BLA_SIZEOF_INTEGER 8)
