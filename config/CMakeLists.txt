@@ -19,6 +19,14 @@ option(BUILD_SHARED_LIBS "Whether the libraries built should be shared" FALSE)
 option(WITH_API "Enable support for C API via iso_c_binding module" TRUE)
 option(WITH_OpenMP "Enable support for shared memory parallelisation with OpenMP" TRUE)
 option(WITH_API_V2 "Enable the compatibility layer for the dftd4 2.5.x API" FALSE)
+option(WITH_ILP64 "Enable ILP64 support" OFF)
+option(ENABLE_AUTO_LAPACK "Enable CMake automatic BLAS detection" ON)
+set(LAPACK_LIBRARIES "" CACHE STRING "External BLAS libraries")
+
+if(LAPACK_LIBRARIES)
+  set(ENABLE_AUTO_LAPACK OFF PARENT_SCOPE)
+endif()
+
 if(NOT DEFINED "${PROJECT_NAME}-dependeny-method")
   set(
     "${PROJECT_NAME}-dependency-method"
