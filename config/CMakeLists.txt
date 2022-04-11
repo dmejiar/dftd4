@@ -19,6 +19,9 @@ option(BUILD_SHARED_LIBS "Whether the libraries built should be shared" FALSE)
 option(WITH_API "Enable support for C API via iso_c_binding module" TRUE)
 option(WITH_OpenMP "Enable support for shared memory parallelisation with OpenMP" TRUE)
 option(WITH_API_V2 "Enable the compatibility layer for the dftd4 2.5.x API" FALSE)
+option(WITH_ILP64 "Enable support for ILP64 BLAS/LAPACK calls" FALSE)
+option(WITH_TESTS "Enable compilation of unit tests" TRUE)
+
 if(NOT DEFINED "${PROJECT_NAME}-dependeny-method")
   set(
     "${PROJECT_NAME}-dependency-method"
@@ -81,3 +84,7 @@ install(
   "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
   DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
 )
+
+include(CheckFortranSourceCompiles)
+
+

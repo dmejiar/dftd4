@@ -43,6 +43,7 @@ option(
   'api',
   type: 'boolean',
   value: true,
+  yield: true,
   description: 'Build C API using iso_c_binding module',
 )
 
@@ -66,3 +67,13 @@ option(
   value: false,
   description: 'Enable the compatibility layer for the dftd4 2.5.x API',
 )
+
+option(
+  'ilp64',
+  type: 'boolean',
+  value: false,
+  yield: true,
+  description: 'Enable ILP64 LAPACK/BLAS',
+)
+
+

@@ -17,8 +17,14 @@
 subdir('damping')
 subdir('data')
 
+if get_option('ilp64')
+  lp = '64'
+else
+  lp = ''
+endif
+
 srcs += files(
-  'blas.f90',
+  'blas'+lp+'.f90',
   'charge.f90',
   'cutoff.f90',
   'damping.f90',

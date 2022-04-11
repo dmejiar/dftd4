@@ -43,6 +43,15 @@ if get_option('openmp')
   lib_deps += omp_dep
 endif
 
+if get_option('ilp64')
+  add_project_arguments('-DWITH_ILP64', language:'fortran')
+  mkllp = 'i'
+  lp = '64'
+else
+  mkllp = ''
+  lp = ''
+endif
+
 lapack_vendor = get_option('lapack')
 if lapack_vendor == 'auto'
   if fc_id == 'intel'
@@ -53,12 +62,12 @@ endif
 if lapack_vendor == 'mkl'
   mkl_dep = []
   if fc_id == 'intel'
-    mkl_dep += fc.find_library('mkl_intel_lp64')
+    mkl_dep += fc.find_library('mkl_intel_'+mkllp+'lp64')
     if get_option('openmp')
       mkl_dep += fc.find_library('mkl_intel_thread')
     endif
   elif fc_id == 'gcc'
-    mkl_dep += fc.find_library('mkl_gf_lp64')
+    mkl_dep += fc.find_library('mkl_gf_'+mkllp+'lp64')
     if get_option('openmp')
       mkl_dep += fc.find_library('mkl_gnu_thread')
     endif
@@ -76,33 +85,49 @@ elif lapack_vendor == 'mkl-rt'
   lib_deps += mkl_dep
 
 elif lapack_vendor == 'openblas'
-  openblas_dep = dependency('openblas', required: false)
+  openblas_dep = dependency('openblas'+lp, required: false)
   if not openblas_dep.found()
-    openblas_dep = fc.find_library('openblas')
+    openblas_dep = fc.find_library('openblas'+lp)
   endif
   lib_deps += openblas_dep
   if not fc.links('external dsytrs; call dsytrs(); end', dependencies: openblas_dep)
-    lapack_dep = dependency('lapack', required: false)
+    lapack_dep = dependency('lapack'+lp, required: false)
     if not lapack_dep.found()
-      lapack_dep = fc.find_library('lapack')
+      lapack_dep = fc.find_library('lapack'+lp)
     endif
     lib_deps += lapack_dep
   endif
 
 elif lapack_vendor == 'custom'
-  foreach lib: get_option('custom_libraries')
-    lib_deps += fc.find_library(lib)
-  endforeach
+  custom_deps = []
+  libs = get_option('custom_libraries')
+  if libs[0].startswith('-L')
+    foreach lib: libs
+      if lib != libs[0]
+        custom_deps += fc.find_library(lib, dirs: libs[0].substring(2))
+      endif
+    endforeach
+  else
+    foreach lib: libs
+      custom_deps += fc.find_library(lib)
+    endforeach
+  endif
+  if (not fc.links('external dsytrs; call dsytrs(); end', dependencies: [custom_deps,omp_dep]))
+    error('Custom LAPACK libraries do not link')
+  elif (not fc.links('external dsytrs; call dgemm(); end', dependencies: [custom_deps,omp_dep]))
+    error('Custom BLAS libraries do not link')
+  endif
+  lib_deps += custom_deps
 
 else
-  lapack_dep = dependency('lapack', required: false)
+  lapack_dep = dependency('lapack'+lp, required: false)
   if not lapack_dep.found()
-    lapack_dep = fc.find_library('lapack')
+    lapack_dep = fc.find_library('lapack'+lp)
   endif
   lib_deps += lapack_dep
-  blas_dep = dependency('blas', required: false)
+  blas_dep = dependency('blas'+lp, required: false)
   if not blas_dep.found()
-    blas_dep = fc.find_library('blas')
+    blas_dep = fc.find_library('blas'+lp)
   endif
   lib_deps += blas_dep
 endif
