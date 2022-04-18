@@ -21,7 +21,7 @@ module test_model
    use mctc_io_structure, only : structure_type
    use mstore, only : get_structure
    use dftd4_charge, only : get_charges
-   use dftd4_cutoff, only : get_lattice_points
+   use dftd4_cutoff, only : get_lattice_points => get_lattice_points_cutoff
    use dftd4_data, only : get_covalent_rad
    use dftd4_ncoord, only : get_coordination_number
    use dftd4_model

@@ -18,7 +18,7 @@
 module dftd4_disp
    use dftd4_blas, only : d4_gemv
    use dftd4_charge, only : get_charges
-   use dftd4_cutoff, only : realspace_cutoff, get_lattice_points
+   use dftd4_cutoff, only : realspace_cutoff, get_lattice_points => get_lattice_points_cutoff
    use dftd4_damping, only : damping_param
    use dftd4_data, only : get_covalent_rad
    use dftd4_model, only : d4_model

@@ -21,6 +21,7 @@ module dftd4_cutoff
    private
 
    public :: realspace_cutoff, get_lattice_points
+   public :: get_lattice_points_cutoff
 
 
    !> Coordination number cutoff

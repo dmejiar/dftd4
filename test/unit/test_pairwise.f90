@@ -36,6 +36,13 @@ module test_pairwise
 contains
 
 
+! Keep nvfortran happy
+pure function init(s6, s8, s9, a1, a2, alp) result(param)
+  type(rational_damping_param) :: param
+  real(wp),intent(in) :: s6, s8, s9, a1, a2, alp
+  param = rational_damping_param(s6,s8,s9,a1,a2,alp)
+end function
+
 !> Collect all exported unit tests
 subroutine collect_pairwise(testsuite)
 
@@ -85,7 +92,8 @@ subroutine test_pbed4_mb01(error)
    type(error_type), allocatable, intent(out) :: error
 
    type(structure_type) :: mol
-   type(rational_damping_param) :: param = rational_damping_param(&
+   type(rational_damping_param) :: param
+   param = init(&
       & s6 = 1.0_wp, s9 = 0.0_wp, alp = 16.0_wp, &
       & s8 = 0.95948085_wp, a1 = 0.38574991_wp, a2 = 4.80688534_wp)
 
@@ -101,7 +109,8 @@ subroutine test_b97d4_mb02(error)
    type(error_type), allocatable, intent(out) :: error
 
    type(structure_type) :: mol
-   type(rational_damping_param) :: param = rational_damping_param(&
+   type(rational_damping_param) :: param
+   param = init(&
       & s6 = 1.0_wp, s9 = 1.0_wp, alp = 16.0_wp, &
       & s8 = 1.69460052_wp, a1 = 0.28904684_wp, a2 = 4.13407323_wp)
 
@@ -117,7 +126,8 @@ subroutine test_tpssd4_ammonia(error)
    type(error_type), allocatable, intent(out) :: error
 
    type(structure_type) :: mol
-   type(rational_damping_param) :: param = rational_damping_param(&
+   type(rational_damping_param) :: param
+   param = init(&
       & s6 = 1.0_wp, s9 = 1.0_wp, alp = 16.0_wp, &
       & s8 = 1.76596355_wp, a1 = 0.42822303_wp, a2 = 4.54257102_wp )
 
