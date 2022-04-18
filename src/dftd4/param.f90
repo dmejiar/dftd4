@@ -115,7 +115,7 @@ subroutine get_d4eeq_bj_parameter(dfnum, param, s9)
 
 contains
 
-   pure function dftd_param(s6, s8, a1, a2, alp) result(param)
+   function dftd_param(s6, s8, a1, a2, alp) result(param)
       real(wp), intent(in) :: s8, a1, a2
       real(wp), intent(in), optional :: s6, alp
       type(rational_damping_param) :: param
@@ -522,7 +522,7 @@ subroutine get_d4eeq_bjatm_parameter(dfnum, param, s9)
 
 contains
 
-   pure function dftd_param(s6, s8, a1, a2, alp) result(param)
+   function dftd_param(s6, s8, a1, a2, alp) result(param)
       real(wp), intent(in) :: s8, a1, a2
       real(wp), intent(in), optional :: s6, alp
       type(rational_damping_param) :: param
