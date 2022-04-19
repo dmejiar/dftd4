@@ -21,6 +21,7 @@ option(WITH_OpenMP "Enable support for shared memory parallelisation with OpenMP
 option(WITH_API_V2 "Enable the compatibility layer for the dftd4 2.5.x API" FALSE)
 option(WITH_ILP64 "Enable ILP64 support" OFF)
 option(WITH_TESTS "Enable test module" ON)
+option(WITH_APP "Enable compilation of example app" ON)
 option(ENABLE_AUTO_LAPACK "Enable CMake automatic BLAS detection" ON)
 set(LAPACK_LIBRARIES "" CACHE STRING "External BLAS libraries")
 

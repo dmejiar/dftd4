@@ -109,16 +109,16 @@ subroutine get_run_arguments(config, error)
       case("--")
          getopts = .false.
       case("-h", "--help")
-         call help(output_unit)
+         call help(int(output_unit))
          stop
       case("--version")
-         call version(output_unit)
+         call version(int(output_unit))
          stop
       case("--citation")
-         call citation(output_unit)
+         call citation(int(output_unit))
          stop
       case("--license")
-         call license(output_unit)
+         call license(int(output_unit))
          stop
       case("-v", "--verbose")
          config%verbosity = config%verbosity + 1
@@ -230,7 +230,7 @@ subroutine get_run_arguments(config, error)
 
    if (.not.allocated(config%input)) then
       if (.not.allocated(error)) then
-         call help(output_unit)
+         call help(int(output_unit))
          error stop
       end if
    end if

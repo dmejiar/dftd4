@@ -116,7 +116,9 @@ target_include_directories(
 )
 
 # Add example application
-add_subdirectory("app")
+if(WITH_APP)
+  add_subdirectory("app")
+endif()
 
 # Export targets for other projects
 add_library("${PROJECT_NAME}" INTERFACE)

@@ -74,14 +74,14 @@ subroutine run_main(config, error)
    logical :: exist
 
    if (config%verbosity > 1) then
-      call header(output_unit)
+      call header(int(output_unit))
    end if
 
    if (config%input == "-") then
       if (.not.allocated(config%input_format)) then
-         call read_structure(mol, input_unit, filetype%xyz, error)
+         call read_structure(mol, int(input_unit), filetype%xyz, error)
       else
-         call read_structure(mol, input_unit, config%input_format, error)
+         call read_structure(mol, int(input_unit), config%input_format, error)
       end if
    else
       call read_structure(mol, config%input, error, config%input_format)
@@ -123,7 +123,7 @@ subroutine run_main(config, error)
    end if
 
    if (allocated(param) .and. config%verbosity > 0) then
-      call ascii_damping_param(output_unit, param, config%method)
+      call ascii_damping_param(int(output_unit), param, config%method)
    end if
 
    if (allocated(param)) then
@@ -137,14 +137,14 @@ subroutine run_main(config, error)
 
    if (config%properties) then
       if (config%verbosity > 1) then
-         call ascii_atomic_radii(output_unit, mol, d4)
-         call ascii_atomic_references(output_unit, mol, d4)
+         call ascii_atomic_radii(int(output_unit), mol, d4)
+         call ascii_atomic_references(int(output_unit), mol, d4)
       end if
       allocate(cn(mol%nat), q(mol%nat), c6(mol%nat, mol%nat), alpha(mol%nat))
       call get_properties(mol, d4, realspace_cutoff(), cn, q, c6, alpha)
 
       if (config%verbosity > 0) then
-         call ascii_system_properties(output_unit, mol, d4, cn, q, c6)
+         call ascii_system_properties(int(output_unit), mol, d4, cn, q, c6)
       end if
    end if
 
@@ -157,9 +157,9 @@ subroutine run_main(config, error)
             & pair_disp3)
       end if
       if (config%verbosity > 0) then
-         call ascii_results(output_unit, mol, energy, gradient, sigma)
+         call ascii_results(int(output_unit), mol, energy, gradient, sigma)
          if (config%pair_resolved) then
-            call ascii_pairwise(output_unit, mol, pair_disp2, pair_disp3)
+            call ascii_pairwise(int(output_unit), mol, pair_disp2, pair_disp3)
          end if
       end if
       if (config%tmer) then
